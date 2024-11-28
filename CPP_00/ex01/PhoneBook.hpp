@@ -22,8 +22,8 @@ class PhoneBook
 		int		search_contact(void) const;
 
 	private:
-		int		index;
-		int		size;
+		int		_index;
+		int		_size;
 };
 
 #endif

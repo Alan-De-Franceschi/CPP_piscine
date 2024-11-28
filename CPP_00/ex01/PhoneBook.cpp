@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void) : index(0), size(0)
+PhoneBook::PhoneBook(void) : _index(0), _size(0)
 {
 	return ;
 }
@@ -55,13 +55,13 @@ int	fill_contact(Contact & instance)
 
 int	PhoneBook::add_contact(void)
 {
-	if (this->index == 8)
-		this->index = 0;
-	if (fill_contact(this->Contacts[this->index]) == 1)
+	if (this->_index == 8)
+		this->_index = 0;
+	if (fill_contact(this->Contacts[this->_index]) == 1)
 		return (1);
-	this->index += 1;
-	if (this->size < 8)
-		this->size += 1;
+	this->_index += 1;
+	if (this->_size < 8)
+		this->_size += 1;
 	return (0);
 }
 
@@ -111,7 +111,7 @@ int	PhoneBook::search_contact(void) const
 	std::string	buf;
 	int i = -1;
 
-	if (index == 0)
+	if (_size == 0)
 	{
 		system("clear");
 		std::cout << "-- 0 contacts --" << std::endl << std::endl;
@@ -123,16 +123,16 @@ int	PhoneBook::search_contact(void) const
 	}
 	else
 	{
-		while (buf.length() != 1 || !isdigit(buf[0]) || i < 0 || i > 8 || i >= this->size)
+		while (buf.length() != 1 || !isdigit(buf[0]) || i < 0 || i > 8 || i >= this->_size)
 		{
 			system("clear");
-			print_contact_list(this->size, this->Contacts);
+			print_contact_list(this->_size, this->Contacts);
 			std::cout << "Please enter contact index:" << std::flush;
 			if (std::cin.eof())
 				return (1);
 			std::getline(std::cin, buf);
 			std::istringstream(buf) >> i;
-			if (buf.length() == 1 && isdigit(buf[0]) && i >= 0 && i <= 8 && i < this->size)
+			if (buf.length() == 1 && isdigit(buf[0]) && i >= 0 && i <= 8 && i < this->_size)
 			{
 				if (print_contact(this->Contacts[i]) == 1)
 					return (1);
