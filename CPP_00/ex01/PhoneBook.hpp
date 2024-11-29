@@ -1,5 +1,5 @@
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
 #include <iostream>
 #include <iomanip>
