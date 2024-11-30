@@ -18,7 +18,7 @@ COLOUR_END		=	\033[0m
 
 SOURCES_PATH	=	./
 
-SOURCES_MAIN	= 	main.cpp \
+SOURCES_MAIN	= 	tests.cpp \
 					Account.cpp \
 	
 # **************************************************************************** #
