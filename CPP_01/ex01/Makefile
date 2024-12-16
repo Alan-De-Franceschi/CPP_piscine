@@ -20,11 +20,8 @@ SOURCES_PATH	=	./
 
 SOURCES_MAIN	= 	main.cpp \
 						Zombie.cpp \
-						newZombie.cpp \
-						randomChump.cpp \
+						zombieHorde.cpp \
 	
-
-
 # **************************************************************************** #
 #                                                                              #
 #                                  OBJECTS                                     #
