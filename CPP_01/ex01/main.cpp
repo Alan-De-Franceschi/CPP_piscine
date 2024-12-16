@@ -1,12 +1,17 @@
 #include "Zombie.hpp"
 
-int main(void)
+int main(int ac, char **av)
 {
 	Zombie *horde;
+	int		N;
 
-	horde = zombieHorde(10, "Pinky");
-
-	for (int i = 0; i < 10; i++)
+	if (ac != 3)
+		return (1);
+	N = std::atoi(av[1]);
+	if (N == -1 || N < 0)
+		return (1);
+	horde = zombieHorde(N, av[2]);
+	for (int i = 0; i < N; i++)
 	{
 		std::cout 
 			<< i + 1 
