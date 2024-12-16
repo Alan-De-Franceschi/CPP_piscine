@@ -8,7 +8,7 @@ int main(int ac, char **av)
 	if (ac != 3)
 		return (1);
 	N = std::atoi(av[1]);
-	if (N == -1 || N < 0)
+	if (N <= 0 || N > 100)
 		return (1);
 	horde = zombieHorde(N, av[2]);
 	for (int i = 0; i < N; i++)
