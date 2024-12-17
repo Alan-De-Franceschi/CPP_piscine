@@ -1,6 +1,6 @@
-NAME			=	zombie
+NAME			=	weapon
 
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98
+CFLAGS			=	-Wall -Wextra -Werror -I INCLUDES -std=c++98
 
 CC				=	c++
 
@@ -19,9 +19,9 @@ COLOUR_END		=	\033[0m
 SOURCES_PATH	=	./
 
 SOURCES_MAIN	= 	main.cpp \
-						Zombie.cpp \
-						newZombie.cpp \
-						randomChump.cpp \
+						Weapon.cpp \
+						HumanA.cpp \
+						HumanB.cpp \
 	
 # **************************************************************************** #
 #                                                                              #
@@ -39,7 +39,9 @@ OBJECTS			=	$(addprefix ${OBJECTS_PATH}, ${SOURCES_MAIN:.cpp=.o}) \
 #                                                                              #
 # **************************************************************************** #
 
-INCLD			=	Zombie.hpp
+INCLUDES		=	Weapon.hpp \
+						HumanA.hpp \
+						HumanB.hpp \
 
 # **************************************************************************** #
 #                                                                              #
@@ -49,14 +51,14 @@ INCLD			=	Zombie.hpp
 
 all:  ${NAME}
 
-${NAME}: ${OBJECTS} ${INCLD}
+${NAME}: ${OBJECTS} ${INCLUDES}
 	@${CC} ${CFLAGS} ${OBJECTS} -o ${NAME}
-	@echo "${COLOUR_GREEN}\33[2K\nzombie compiled with : \n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\33[2K\nweapon compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS}\n"
 
 ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.cpp
 	@mkdir -p ${dir $@}
-	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling zombie :${COLOUR_END} $@"
+	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling weapon :${COLOUR_END} $@"
 
 clean:
 	@rm -rf ${OBJECTS_PATH}
@@ -64,7 +66,7 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
-	@echo "${COLOUR_GREEN}\nzombie cleaned\n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\nweapon cleaned\n${COLOUR_END}"
 
 re: fclean all
 

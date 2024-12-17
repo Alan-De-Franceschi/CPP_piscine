@@ -17,7 +17,7 @@ class   Zombie
 
     private:
 
-        std::string name;
+        std::string _name;
 };
 
 Zombie* zombieHorde( int N, std::string name );
