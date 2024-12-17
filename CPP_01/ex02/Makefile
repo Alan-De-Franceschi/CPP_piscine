@@ -1,4 +1,4 @@
-NAME			=	horde
+NAME			=	brain
 
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98
 
@@ -19,8 +19,6 @@ COLOUR_END		=	\033[0m
 SOURCES_PATH	=	./
 
 SOURCES_MAIN	= 	main.cpp \
-						Zombie.cpp \
-						zombieHorde.cpp \
 	
 # **************************************************************************** #
 #                                                                              #
@@ -34,28 +32,20 @@ OBJECTS			=	$(addprefix ${OBJECTS_PATH}, ${SOURCES_MAIN:.cpp=.o}) \
 
 # **************************************************************************** #
 #                                                                              #
-#                                  INCLUDES                                    #
-#                                                                              #
-# **************************************************************************** #
-
-INCLD			=	Zombie.hpp
-
-# **************************************************************************** #
-#                                                                              #
 #                                  RULES                                       #
 #                                                                              #
 # **************************************************************************** #
 
 all:  ${NAME}
 
-${NAME}: ${OBJECTS} ${INCLD}
+${NAME}: ${OBJECTS}
 	@${CC} ${CFLAGS} ${OBJECTS} -o ${NAME}
-	@echo "${COLOUR_GREEN}\33[2K\nhorde compiled with : \n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\33[2K\nbrain compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS}\n"
 
 ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.cpp
 	@mkdir -p ${dir $@}
-	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling horde :${COLOUR_END} $@"
+	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling brain :${COLOUR_END} $@"
 
 clean:
 	@rm -rf ${OBJECTS_PATH}
@@ -63,7 +53,7 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
-	@echo "${COLOUR_GREEN}\nhorde cleaned\n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\nbrain cleaned\n${COLOUR_END}"
 
 re: fclean all
 
