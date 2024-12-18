@@ -1,4 +1,4 @@
-NAME			=	winner
+NAME			=	sed
 
 CFLAGS			=	-Wall -Wextra -Werror -I INCLUDES -std=c++98
 
@@ -19,7 +19,7 @@ COLOUR_END		=	\033[0m
 SOURCES_PATH	=	./
 
 SOURCES_MAIN	= 	main.cpp \
-						File.cpp \
+						Sed.cpp \
 
 	
 # **************************************************************************** #
@@ -38,7 +38,7 @@ OBJECTS			=	$(addprefix ${OBJECTS_PATH}, ${SOURCES_MAIN:.cpp=.o}) \
 #                                                                              #
 # **************************************************************************** #
 
-INCLUDES		=	File.hpp
+INCLUDES		=	Sed.hpp
 
 # **************************************************************************** #
 #                                                                              #
@@ -50,12 +50,12 @@ all:  ${NAME}
 
 ${NAME}: ${OBJECTS} ${INCLUDES}
 	@${CC} ${CFLAGS} ${OBJECTS} -o ${NAME}
-	@echo "${COLOUR_GREEN}\33[2K\nwinner compiled with : \n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\33[2K\nsed compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS}\n"
 
 ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.cpp
 	@mkdir -p ${dir $@}
-	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling winner :${COLOUR_END} $@"
+	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling sed :${COLOUR_END} $@"
 
 clean:
 	@rm -rf ${OBJECTS_PATH}
@@ -64,7 +64,7 @@ fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
 	@rm -f outfile
-	@echo "${COLOUR_GREEN}\nwinner cleaned\n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\nsed cleaned\n${COLOUR_END}"
 
 re: fclean all
 
