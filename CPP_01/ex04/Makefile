@@ -19,6 +19,7 @@ COLOUR_END		=	\033[0m
 SOURCES_PATH	=	./
 
 SOURCES_MAIN	= 	main.cpp \
+						File.cpp \
 
 	
 # **************************************************************************** #
@@ -37,7 +38,7 @@ OBJECTS			=	$(addprefix ${OBJECTS_PATH}, ${SOURCES_MAIN:.cpp=.o}) \
 #                                                                              #
 # **************************************************************************** #
 
-INCLUDES		=	
+INCLUDES		=	File.hpp
 
 # **************************************************************************** #
 #                                                                              #
@@ -62,6 +63,7 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
+	@rm -f outfile
 	@echo "${COLOUR_GREEN}\nwinner cleaned\n${COLOUR_END}"
 
 re: fclean all
