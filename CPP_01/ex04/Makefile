@@ -63,7 +63,7 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
-	@rm -f outfile
+	@rm -f test.replace
 	@echo "${COLOUR_GREEN}\nsed cleaned\n${COLOUR_END}"
 
 re: fclean all

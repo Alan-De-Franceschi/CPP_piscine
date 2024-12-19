@@ -4,6 +4,7 @@
 # include <iostream>
 # include <string>
 # include <fstream>
+#include <iterator>
 
 int    sed(char *filename, std::string s1, std::string s2);
 
