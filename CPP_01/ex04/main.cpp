@@ -9,6 +9,7 @@ int main(int ac, char **av)
 
 	std::string	s1 = av[2];
 	std::string	s2 = av[3];
-	sed(av[1], s1, s2);
+	if (sed(av[1], s1, s2) == 1)
+		return (1);
     return (0);
 }
