@@ -20,6 +20,7 @@ class   Harl
         void    warning(void);
         void    error(void);
         void    blabla(void);
+        void    printComplain(void (Harl::*f[4])(void), int index);
 };
 
 #endif

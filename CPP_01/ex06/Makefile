@@ -1,4 +1,4 @@
-NAME			=	harl
+NAME			=	harlFilter
 
 CFLAGS			=	-Wall -Wextra -Werror -I INCLUDES -std=c++98
 
@@ -50,12 +50,12 @@ all:  ${NAME}
 
 ${NAME}: ${OBJECTS} ${INCLUDES}
 	@${CC} ${CFLAGS} ${OBJECTS} -o ${NAME}
-	@echo "${COLOUR_GREEN}\33[2K\nharl compiled with : \n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\33[2K\nharlFilter compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS}\n"
 
 ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.cpp
 	@mkdir -p ${dir $@}
-	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling harl :${COLOUR_END} $@"
+	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling harlFilter :${COLOUR_END} $@"
 
 clean:
 	@rm -rf ${OBJECTS_PATH}
@@ -63,7 +63,7 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
-	@echo "${COLOUR_GREEN}\nharl cleaned\n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\nharlFilter cleaned\n${COLOUR_END}"
 
 re: fclean all
 
