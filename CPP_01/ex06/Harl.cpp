@@ -18,6 +18,7 @@ void    Harl::debug(void)
         << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger."
         << std::endl
         << "I really do!"
+        << std::endl
         << std::endl;
         return ;
 }
@@ -30,6 +31,7 @@ void    Harl::info(void)
         << "I cannot believe adding extra bacon costs more money."
         << std::endl
         << "You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!"
+        << std::endl
         << std::endl;
         return ;
 }
@@ -42,6 +44,7 @@ void    Harl::warning(void)
         << "I think I deserve to have some extra bacon for free."
         << std::endl
         << "I’ve been coming for years whereas you started working here since last month."
+        << std::endl
         << std::endl;
         return ;
 }
@@ -52,6 +55,7 @@ void    Harl::error(void)
         << "[ ERROR ]"
         << std::endl
         << "This is unacceptable! I want to speak to the manager now."
+        << std::endl
         << std::endl;
         return ;
 }
@@ -62,16 +66,6 @@ void    Harl::blabla(void)
         << "[ Probably complaining about insignificant problems ]"
         << std::endl;
         return ;
-}
-
-void    Harl::printComplain(void (Harl::*f[4])(void), int index)
-{
-    for (int i = index; i < 4; i++)
-    {
-        (this->*f[i])();
-        std::cout << std::endl;
-    }
-    return ;
 }
 
 void    Harl::complain(std::string level)
@@ -86,20 +80,19 @@ void    Harl::complain(std::string level)
             break;
         }
     }
-    void (Harl::*f[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     switch (index)
     {
         case 0:
-            this->printComplain(f, 0);
-            break ;
+            this->debug();
+            index++;
         case 1:
-            this->printComplain(f, 1);
-            break ;
+            this->info();
+            index++;
         case 2:
-            this->printComplain(f, 2);
-            break ;
+            this->warning();
+            index++;
         case 3:
-            this->printComplain(f, 3);
+            this->error();
             break ;
         default:
             this->blabla();
