@@ -8,7 +8,7 @@ Fixed::Fixed(void) : _rawBits(0)
 	return ;
 }
 
-Fixed::Fixed(Fixed const &src)
+Fixed::Fixed(Fixed const & src)
 {
 	std::cout
 		<< "Copy constructor called"
@@ -25,7 +25,7 @@ Fixed::~Fixed(void)
 	return ;
 }
 
-Fixed	&Fixed::operator=(Fixed const &rhs)
+Fixed &	Fixed::operator=(Fixed const & rhs)
 {
 	std::cout
 		<< "Copy assignment operator called"
