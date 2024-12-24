@@ -28,5 +28,4 @@ class Fixed
         int const static    _nBits = 8;
 };
 
-
 #endif
