@@ -28,4 +28,6 @@ class Fixed
         int const static    _nBits = 8;
 };
 
+std::ostream &  operator<<(std::ostream & o, Fixed const & rhs);
+
 #endif
