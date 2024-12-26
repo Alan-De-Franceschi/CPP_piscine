@@ -117,6 +117,11 @@ Fixed &	Fixed::operator++()
 	return (*this);
 }
 
+Fixed	Fixed::operator++(int)
+{
+	return ;
+}
+
 std::ostream &	operator<<(std::ostream & o, Fixed const & rhs)
 {
 	o << rhs.toFloat();
