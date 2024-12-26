@@ -306,5 +306,24 @@ int main(void)
 		<< std::endl
 		<< std::endl;
 
+	std::cout
+		<< GREEN
+		<< "===== TEST Min Fixed/Fixed ====="
+		<< END
+		<< std::endl 
+		<< std::endl;
+
+	std::cout
+		<< "a = "
+		<< a
+		<< std::endl
+		<< "b = "
+		<< b
+		<< std::endl
+		<< "min(a, b) = "
+		<< Fixed::min(a, b)
+		<< std::endl
+		<< std::endl;
+
 	return (0);
 }

@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 
+int const	Fixed::_nBits = 8;
+
 /* CONSTRUCTORS - DESTRUCTORS*/
 
 Fixed::Fixed(void) : _rawBits(0)
@@ -145,6 +147,20 @@ std::ostream &	operator<<(std::ostream & o, Fixed const & rhs)
 }
 
 /* MEMBER FUNCTIONS */
+
+Fixed &  Fixed::min(Fixed & x, Fixed & y)
+{
+	if (x <= y)
+		return (x);
+	return (y);
+}
+
+Fixed &  Fixed::min(Fixed const & x, Fixed const & y)
+{
+	if (x <= y)
+		return (x);
+	return (y);
+}
 
 float   Fixed::toFloat(void) const
 {

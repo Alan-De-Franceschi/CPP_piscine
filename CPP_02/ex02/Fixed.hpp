@@ -18,31 +18,33 @@ class Fixed
         Fixed(float const src);
         ~Fixed(void);
 
-        Fixed & operator=(Fixed const & rhs);
-        Fixed   operator+(Fixed const & rhs);
-        Fixed   operator-(Fixed const & rhs);
-        Fixed   operator*(Fixed const & rhs);
-        Fixed   operator/(Fixed const & rhs);
-        bool    operator>(Fixed const & rhs);
-        bool    operator>=(Fixed const & rhs);
-        bool    operator<(Fixed const & rhs);
-        bool    operator<=(Fixed const & rhs);
-        bool    operator==(Fixed const & rhs);
-        bool    operator!=(Fixed const & rhs);
-        Fixed & operator++();
-        Fixed   operator++(int);
-        Fixed & operator--();
-        Fixed   operator--(int);
+        Fixed &         operator=(Fixed const & rhs);
+        Fixed           operator+(Fixed const & rhs);
+        Fixed           operator-(Fixed const & rhs);
+        Fixed           operator*(Fixed const & rhs);
+        Fixed           operator/(Fixed const & rhs);
+        bool            operator>(Fixed const & rhs);
+        bool            operator>=(Fixed const & rhs);
+        bool            operator<(Fixed const & rhs);
+        bool            operator<=(Fixed const & rhs);
+        bool            operator==(Fixed const & rhs);
+        bool            operator!=(Fixed const & rhs);
+        Fixed &         operator++();
+        Fixed           operator++(int);
+        Fixed &         operator--();
+        Fixed           operator--(int);
 
-        float   toFloat(void) const;
-        int     toInt(void) const;
-		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
+        static Fixed &  min(Fixed & x, Fixed & y);
+        static Fixed &  min(Fixed const & x, Fixed const & y);
+        float           toFloat(void) const;
+        int             toInt(void) const;
+		int             getRawBits(void) const;
+		void            setRawBits(int const raw);
 
     private:
 	
         int                 _rawBits;
-        int const static    _nBits = 8;
+        static int const    _nBits;
 };
 
 std::ostream &  operator<<(std::ostream & o, Fixed const & rhs);

@@ -25,7 +25,7 @@ class Fixed
     private:
 	
         int                 _rawBits;
-        int const static    _nBits = 8;
+        static int const    _nBits;
 };
 
 std::ostream &  operator<<(std::ostream & o, Fixed const & rhs);

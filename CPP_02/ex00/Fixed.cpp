@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 
+int const	Fixed::_nBits = 8;
+
 Fixed::Fixed(void) : _rawBits(0)
 {
 	std::cout 
