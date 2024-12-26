@@ -31,7 +31,7 @@ Fixed::Fixed(float const src)
 	std::cout
 		<< "Float constructor called"
 		<< std::endl;
-	this->_rawBits = static_cast<int>(std::roundf(src * (1 << _nBits)));
+	this->_rawBits = static_cast<int>(roundf(src * (1 << _nBits)));
 	return ;
 }
 
