@@ -114,12 +114,28 @@ bool	Fixed::operator!=(Fixed const & rhs)
 
 Fixed &	Fixed::operator++()
 {
+	this->_rawBits += 1;
 	return (*this);
 }
 
 Fixed	Fixed::operator++(int)
 {
-	return ;
+	Fixed	temp = *this;
+	++*this;
+	return temp;
+}
+
+Fixed &	Fixed::operator--()
+{
+	this->_rawBits -= 1;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	temp = *this;
+	--*this;
+	return temp;
 }
 
 std::ostream &	operator<<(std::ostream & o, Fixed const & rhs)

@@ -262,5 +262,49 @@ int main(void)
 		<< std::endl
 		<< std::endl;
 
+	std::cout
+		<< GREEN
+		<< "===== TEST OPERATOR ++x et x++ ====="
+		<< END
+		<< std::endl 
+		<< std::endl;
+
+	std::cout
+		<< "a = "
+		<< a
+		<< std::endl
+		<< "++a = "
+		<< ++a
+		<< std::endl
+		<< "a++ = "
+		<< a++
+		<<std::endl
+		<< "a = "
+		<< a
+		<< std::endl
+		<< std::endl;
+
+	std::cout
+		<< GREEN
+		<< "===== TEST OPERATOR --x et x-- ====="
+		<< END
+		<< std::endl 
+		<< std::endl;
+
+	std::cout
+		<< "a = "
+		<< a
+		<< std::endl
+		<< "--a = "
+		<< --a
+		<< std::endl
+		<< "a-- = "
+		<< a--
+		<<std::endl
+		<< "a = "
+		<< a
+		<< std::endl
+		<< std::endl;
+
 	return (0);
 }
