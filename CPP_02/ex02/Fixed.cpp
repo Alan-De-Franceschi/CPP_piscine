@@ -79,7 +79,7 @@ bool	Fixed::operator>(Fixed const & rhs)
 	return (false);
 }
 
-bool	Fixed::operator>=(Fixed const & rhs)
+bool	Fixed::operator>=(Fixed const & rhs) const
 {
 	if (this->_rawBits >= rhs.getRawBits())
 		return (true);
@@ -93,7 +93,7 @@ bool	Fixed::operator<(Fixed const & rhs)
 	return (false);
 }
 
-bool	Fixed::operator<=(Fixed const & rhs)
+bool	Fixed::operator<=(Fixed const & rhs) const
 {
 	if (this->_rawBits <= rhs.getRawBits())
 		return (true);
@@ -155,9 +155,23 @@ Fixed &  Fixed::min(Fixed & x, Fixed & y)
 	return (y);
 }
 
-Fixed &  Fixed::min(Fixed const & x, Fixed const & y)
+Fixed const &  Fixed::min(Fixed const & x, Fixed const & y)
 {
 	if (x <= y)
+		return (x);
+	return (y);
+}
+
+Fixed &  Fixed::max(Fixed & x, Fixed & y)
+{
+	if (x >= y)
+		return (x);
+	return (y);
+}
+
+Fixed const &  Fixed::max(Fixed const & x, Fixed const & y)
+{
+	if (x >= y)
 		return (x);
 	return (y);
 }

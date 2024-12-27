@@ -325,5 +325,24 @@ int main(void)
 		<< std::endl
 		<< std::endl;
 
+	std::cout
+		<< GREEN
+		<< "===== TEST Max Fixed/Fixed ====="
+		<< END
+		<< std::endl 
+		<< std::endl;
+
+	std::cout
+		<< "a = "
+		<< a
+		<< std::endl
+		<< "b = "
+		<< b
+		<< std::endl
+		<< "max(a, b) = "
+		<< Fixed::max(a, b)
+		<< std::endl
+		<< std::endl;
+
 	return (0);
 }
