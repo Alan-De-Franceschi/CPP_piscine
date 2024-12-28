@@ -65,21 +65,134 @@ void	ClapTrap::setName(std::string const & name)
 	return ;
 }
 
+int	ClapTrap::getAttack(void) const
+{
+	return (this->_attack);
+}
+
+void	ClapTrap::setAttack(unsigned int const attack)
+{
+	this->_attack = attack;
+	return ;
+}
+
 /****************************************************************************/
 /*                           Members Functions                              */
 /****************************************************************************/
 
 void	ClapTrap::attack(const std::string & target)
 {
+	if (this->_energy > 0 && this->_hit > 0)
+	{
+		std::cout
+			<< "ClapTrap "
+			<< this->_name
+			<< " attacks "
+			<< target
+			<< ", causing "
+			<< this->_attack
+			<< " points of damage!"
+			<< std::endl;
+		this->_energy--;
+	}
+	else if (this->_hit == 0)
+	{
+		std::cout
+			<< "ClapTrap "
+			<< this->_name
+			<< " can't attack because it's too broken!"
+			<< std::endl;
+	}
+	else if (this->_energy == 0)
+	{
+		std::cout
+			<< "ClapTrap "
+			<< this->_name
+			<< " can't attack, it has no energy left!"
+			<< std::endl;
+	}
 	return ;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
+	std::cout
+		<< "ClapTrap "
+		<< this->_name
+		<< " took "
+		<< amount
+		<< " points of damage";
+	if (this->_hit == 0)
+	{
+		std::cout 
+			<< " but it's already broken!" 
+			<< std::endl;
+		return ;
+	}
+	if (amount >= this->_hit)
+	{
+		this->_hit = 0;
+		std::cout 
+			<< " and is now broken!" 
+			<< std::endl;
+		return ;
+	}
+	this->_hit -= amount;
 	return ;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
+	if (this->_energy > 0 && this->_hit > 0)
+	{
+		if (this->_hit == 10)
+		{
+			std::cout
+				<< "ClapTrap "
+				<< this->_name
+				<< " has all its life points, it wasted one energy point :( !"
+				<< std::endl;
+		}
+		else
+		{
+			std::cout
+				<< "ClapTrap "
+				<< this->_name
+				<< " recovers ";
+			if (amount + this->_hit > 10 )
+			{
+				this->_hit += 10 - this->_hit;
+				std::cout
+					<< 10 - this->_hit
+					<< " life points!"
+					<< std::endl;
+			}
+			else
+			{
+				this->_hit += amount;
+				std::cout
+					<< amount
+					<< " life points!"
+					<< std::endl;
+			}
+		}
+		this->_energy--;
+	}
+	else if (this->_hit == 0)
+	{
+		std::cout
+			<< "ClapTrap "
+			<< this->_name
+			<< " can't repair itself because it's too broken!"
+			<< std::endl;
+	}
+	else if (this->_energy == 0)
+	{
+		std::cout
+			<< "ClapTrap "
+			<< this->_name
+			<< " can't repair itself because it has no energy left!"
+			<< std::endl;
+	}
 	return ;
 }
