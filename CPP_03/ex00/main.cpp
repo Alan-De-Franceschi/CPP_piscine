@@ -39,8 +39,6 @@ int main(void)
     test.beRepaired(500);
     test.showStats();
 
-    std::cout 
-        << std::endl
-        << std::endl;
+    std::cout << std::endl << std::endl;
     return (0);
 }
