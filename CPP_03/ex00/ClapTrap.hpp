@@ -4,6 +4,10 @@
 # include <iostream>
 # include <string>
 
+# define GREEN 	"\033[0;32m"
+# define BLUE	"\033[0;36m"
+# define END	"\033[0m"
+
 class ClapTrap
 {
 	public:
@@ -22,6 +26,7 @@ class ClapTrap
 		void			attack(const std::string& target);
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);
+		void			showStats(void);
 
 	private:
 

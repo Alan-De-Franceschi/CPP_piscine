@@ -11,11 +11,11 @@ ClapTrap::ClapTrap(void)
 
 ClapTrap::ClapTrap(ClapTrap const & src)
 {
+	*this = src;
 	std::cout 
 		<< this->_name
 		<< ": Copy Constructor called"
 		<< std::endl;
-	*this = src;
 	return ;
 }
 
@@ -138,6 +138,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		return ;
 	}
 	this->_hit -= amount;
+	std::cout << std::endl;
 	return ;
 }
 
@@ -161,11 +162,11 @@ void	ClapTrap::beRepaired(unsigned int amount)
 				<< " recovers ";
 			if (amount + this->_hit > 10 )
 			{
-				this->_hit += 10 - this->_hit;
 				std::cout
 					<< 10 - this->_hit
 					<< " life points!"
 					<< std::endl;
+				this->_hit += 10 - this->_hit;
 			}
 			else
 			{
@@ -194,5 +195,13 @@ void	ClapTrap::beRepaired(unsigned int amount)
 			<< " can't repair itself because it has no energy left!"
 			<< std::endl;
 	}
+	return ;
+}
+
+void	ClapTrap::showStats(void)
+{
+	std::cout << BLUE << this->_name 
+		<< " hit = " << this->_hit << ", attack = " 
+		<< this->_attack << ", energy = " << this->_energy << END << std::endl;
 	return ;
 }
