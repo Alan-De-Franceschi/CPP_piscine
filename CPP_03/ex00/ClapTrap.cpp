@@ -13,15 +13,19 @@ ClapTrap::ClapTrap(ClapTrap const & src)
 {
 	*this = src;
 	std::cout 
+		<< this->_className
+		<< " "
 		<< this->_name
 		<< ": Copy Constructor called"
 		<< std::endl;
 	return ;
 }
 
-ClapTrap::ClapTrap(std::string const & name) : _name(name), _hit(10), _energy(10), _attack(0)
+ClapTrap::ClapTrap(std::string const & name) : _name(name), _hit(10), _energy(10), _attack(0), _className(typeName())
 {
-	std::cout 
+	std::cout
+		<< this->_className
+		<< " "
 		<< this->_name
 		<< ": Constructor called"
 		<< std::endl;
@@ -31,6 +35,8 @@ ClapTrap::ClapTrap(std::string const & name) : _name(name), _hit(10), _energy(10
 ClapTrap::~ClapTrap(void)
 {
 	std::cout 
+		<< this->_className
+		<< " "
 		<< this->_name
 		<< ": Destructor called"
 		<< std::endl;
@@ -47,6 +53,7 @@ ClapTrap &	ClapTrap::operator=(ClapTrap const & rhs)
 	this->_hit = rhs._hit;
 	this->_energy = rhs._energy;
 	this->_attack = rhs._attack;
+	this->_className = rhs._className;
 	return (*this);
 }
 
@@ -85,7 +92,8 @@ void	ClapTrap::attack(const std::string & target)
 	if (this->_energy > 0 && this->_hit > 0)
 	{
 		std::cout
-			<< "ClapTrap "
+			<< this->_className
+			<< " "
 			<< this->_name
 			<< " attacks "
 			<< target
@@ -98,7 +106,8 @@ void	ClapTrap::attack(const std::string & target)
 	else if (this->_hit == 0)
 	{
 		std::cout
-			<< "ClapTrap "
+			<< this->_className
+			<< " "
 			<< this->_name
 			<< " can't attack because it's too broken!"
 			<< std::endl;
@@ -106,7 +115,8 @@ void	ClapTrap::attack(const std::string & target)
 	else if (this->_energy == 0)
 	{
 		std::cout
-			<< "ClapTrap "
+			<< this->_className
+			<< " "
 			<< this->_name
 			<< " can't attack, it has no energy left!"
 			<< std::endl;
@@ -117,7 +127,8 @@ void	ClapTrap::attack(const std::string & target)
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	std::cout
-		<< "ClapTrap "
+		<< this->_className
+		<< " "
 		<< this->_name
 		<< " took "
 		<< amount
@@ -149,7 +160,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		if (this->_hit == 10)
 		{
 			std::cout
-				<< "ClapTrap "
+				<< this->_className
+				<< " "
 				<< this->_name
 				<< " has all its life points, it wasted one energy point :( !"
 				<< std::endl;
@@ -157,7 +169,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		else
 		{
 			std::cout
-				<< "ClapTrap "
+				<< this->_className
+				<< " "
 				<< this->_name
 				<< " recovers ";
 			if (amount + this->_hit > 10 )
@@ -182,7 +195,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	else if (this->_hit == 0)
 	{
 		std::cout
-			<< "ClapTrap "
+			<< this->_className
+			<< " "
 			<< this->_name
 			<< " can't repair itself because it's too broken!"
 			<< std::endl;
@@ -190,7 +204,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	else if (this->_energy == 0)
 	{
 		std::cout
-			<< "ClapTrap "
+			<< this->_className
+			<< " "
 			<< this->_name
 			<< " can't repair itself because it has no energy left!"
 			<< std::endl;
@@ -200,8 +215,25 @@ void	ClapTrap::beRepaired(unsigned int amount)
 
 void	ClapTrap::showStats(void)
 {
-	std::cout << BLUE << this->_name 
-		<< " hit = " << this->_hit << ", attack = " 
-		<< this->_attack << ", energy = " << this->_energy << END << std::endl;
+	std::cout 
+		<< BLUE 
+		<< this->_name 
+		<< " hit = " 
+		<< this->_hit 
+		<< ", attack = " 
+		<< this->_attack 
+		<< ", energy = " 
+		<< this->_energy 
+		<< END 
+		<< std::endl;
 	return ;
+}
+
+std::string	ClapTrap::typeName(void)
+{
+	std::string	buf;
+
+	buf = typeid(*this).name();
+	buf.erase(0, 1);
+	return (buf);
 }

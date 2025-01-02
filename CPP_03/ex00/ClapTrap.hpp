@@ -27,6 +27,7 @@ class ClapTrap
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);
 		void			showStats(void);
+		std::string		typeName(void);
 
 	private:
 
@@ -34,6 +35,7 @@ class ClapTrap
 		unsigned int	_hit;
 		unsigned int	_energy;
 		unsigned int	_attack;
+		std::string		_className;
 
 		ClapTrap(void);
 };
