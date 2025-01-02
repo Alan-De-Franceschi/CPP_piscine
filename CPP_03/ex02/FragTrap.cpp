@@ -73,7 +73,7 @@ void FragTrap::highFivesGuys(void)
         << this->_className
         << " "
         << this->_name
-        << "is ready for an HIGH FIVES \U0001270B !!"
+        << "is ready for an HIGH FIVES!!"
         << std::endl;
     return ;
 }
