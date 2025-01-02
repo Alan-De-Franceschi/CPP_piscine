@@ -21,7 +21,7 @@ ClapTrap::ClapTrap(ClapTrap const & src)
 	return ;
 }
 
-ClapTrap::ClapTrap(std::string const & name) : _name(name), _hit(10), _energy(10), _attack(0), _className("ClapTrap")
+ClapTrap::ClapTrap(std::string const & name) : _name(name), _hit(10), _maxHit(10), _energy(10), _attack(0), _className("ClapTrap")
 {
 	std::cout
 		<< this->_className
@@ -35,8 +35,7 @@ ClapTrap::ClapTrap(std::string const & name) : _name(name), _hit(10), _energy(10
 ClapTrap::~ClapTrap(void)
 {
 	std::cout 
-		<< this->_className
-		<< " "
+		<< "ClapTrap "
 		<< this->_name
 		<< ": Destructor called"
 		<< std::endl;
@@ -51,6 +50,7 @@ ClapTrap &	ClapTrap::operator=(ClapTrap const & rhs)
 {
 	this->_name = rhs._name;
 	this->_hit = rhs._hit;
+	this->_maxHit = rhs._maxHit;
 	this->_energy = rhs._energy;
 	this->_attack = rhs._attack;
 	this->_className = rhs._className;
@@ -157,13 +157,13 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_energy > 0 && this->_hit > 0)
 	{
-		if (this->_hit == 10)
+		if (this->_hit == this->_maxHit)
 		{
 			std::cout
 				<< this->_className
 				<< " "
 				<< this->_name
-				<< " has all its life points, it wasted one energy point :( !"
+				<< " has all its life points, it wasted one energy point :(!"
 				<< std::endl;
 		}
 		else
@@ -173,13 +173,13 @@ void	ClapTrap::beRepaired(unsigned int amount)
 				<< " "
 				<< this->_name
 				<< " recovers ";
-			if (amount + this->_hit > 10 )
+			if (amount + this->_hit > this->_maxHit )
 			{
 				std::cout
-					<< 10 - this->_hit
+					<< this->_maxHit - this->_hit
 					<< " life points!"
 					<< std::endl;
-				this->_hit += 10 - this->_hit;
+				this->_hit += this->_maxHit - this->_hit;
 			}
 			else
 			{

@@ -28,10 +28,11 @@ class ClapTrap
 		void			beRepaired(unsigned int amount);
 		void			showStats(void);
 
-	private:
+	protected:
 
 		std::string		_name;
 		unsigned int	_hit;
+		unsigned int	_maxHit;
 		unsigned int	_energy;
 		unsigned int	_attack;
 		std::string		_className;
