@@ -3,7 +3,7 @@
 
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : public virtual ClapTrap
 {
     public:
 
@@ -16,9 +16,11 @@ class ScavTrap : public ClapTrap
         void        attack(const std::string& target);
         void        guardGate(void);
 
-    private:
-        
-        bool    _gkMode;
+    protected:
+
+        std::string     _name;
+        bool            _gkMode;
+        unsigned int    _defaultEnergy;
         
         ScavTrap(void);
 };

@@ -21,7 +21,7 @@ FragTrap::FragTrap(FragTrap const & src)
 	return ;
 }
 
-FragTrap::FragTrap(std::string const & name) : ClapTrap(name)
+FragTrap::FragTrap(std::string const & name) : ClapTrap(name), _name(name), _defaultHit(100), _defaultAttack(30)
 {
 	this->_hit = 100;
 	this->_maxHit = 100;
@@ -40,8 +40,7 @@ FragTrap::FragTrap(std::string const & name) : ClapTrap(name)
 FragTrap::~FragTrap(void)
 {
 	std::cout 
-		<< this->_className
-		<< " "
+		<< "FragTrap "
 		<< this->_name
 		<< ": Destructor called"
 		<< std::endl;
@@ -55,6 +54,9 @@ FragTrap::~FragTrap(void)
 FragTrap &	FragTrap::operator=(FragTrap const & rhs)
 {
 	ClapTrap::operator=(rhs);
+	this->_defaultHit = rhs._defaultHit;
+	this->_defaultAttack = rhs._defaultAttack;
+	this->_name = rhs._name;
 	return (*this);
 }
 

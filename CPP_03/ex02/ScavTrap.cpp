@@ -68,6 +68,43 @@ ScavTrap &	ScavTrap::operator=(ScavTrap const & rhs)
 /*                           Members Functions                              */
 /****************************************************************************/
 
+void	ScavTrap::attack(const std::string & target)
+{
+	if (this->_energy > 0 && this->_hit > 0)
+	{
+		std::cout
+			<< this->_className
+			<< " "
+			<< this->_name
+			<< " make it BOOM on "
+			<< target
+			<< ", causing "
+			<< this->_attack
+			<< " really bad damages!"
+			<< std::endl;
+		this->_energy--;
+	}
+	else if (this->_hit == 0)
+	{
+		std::cout
+			<< this->_className
+			<< " "
+			<< this->_name
+			<< " can't attack because it's too broken!"
+			<< std::endl;
+	}
+	else if (this->_energy == 0)
+	{
+		std::cout
+			<< this->_className
+			<< " "
+			<< this->_name
+			<< " can't attack, it has no energy left!"
+			<< std::endl;
+	}
+	return ;
+}
+
 void	ScavTrap::guardGate(void)
 {
 	if (this->_gkMode)

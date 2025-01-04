@@ -1,15 +1,15 @@
-#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
 /****************************************************************************/
 /*                      Constructors / Destructors                          */
 /****************************************************************************/
 
-FragTrap::FragTrap(void)
+ScavTrap::ScavTrap(void)
 {
 	return ;
 }
 
-FragTrap::FragTrap(FragTrap const & src)
+ScavTrap::ScavTrap(ScavTrap const & src)
 {
 	*this = src;
 	std::cout
@@ -21,13 +21,13 @@ FragTrap::FragTrap(FragTrap const & src)
 	return ;
 }
 
-FragTrap::FragTrap(std::string const & name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string const & name) : ClapTrap(name), _name(name), _gkMode(false), _defaultEnergy(50)
 {
 	this->_hit = 100;
 	this->_maxHit = 100;
-	this->_energy = 100;
-	this->_attack = 30;
-	this->_className = "FragTrap";
+	this->_energy = 50;
+	this->_attack = 20;
+	this->_className = "ScavTrap";
 	std::cout
 		<< this->_className
 		<< " "
@@ -37,11 +37,10 @@ FragTrap::FragTrap(std::string const & name) : ClapTrap(name)
     return ;
 }
 
-FragTrap::~FragTrap(void)
+ScavTrap::~ScavTrap(void)
 {
 	std::cout 
-		<< this->_className
-		<< " "
+		<< "ScavTrap "
 		<< this->_name
 		<< ": Destructor called"
 		<< std::endl;
@@ -52,9 +51,12 @@ FragTrap::~FragTrap(void)
 /*                               Operators                                  */
 /****************************************************************************/
 
-FragTrap &	FragTrap::operator=(FragTrap const & rhs)
+ScavTrap &	ScavTrap::operator=(ScavTrap const & rhs)
 {
 	ClapTrap::operator=(rhs);
+	this->_gkMode = rhs._gkMode;
+	this->_defaultEnergy = rhs._defaultEnergy;
+	this->_name = rhs._name;
 	return (*this);
 }
 
@@ -67,7 +69,7 @@ FragTrap &	FragTrap::operator=(FragTrap const & rhs)
 /*                           Members Functions                              */
 /****************************************************************************/
 
-void	FragTrap::attack(const std::string & target)
+void	ScavTrap::attack(const std::string & target)
 {
 	if (this->_energy > 0 && this->_hit > 0)
 	{
@@ -75,11 +77,11 @@ void	FragTrap::attack(const std::string & target)
 			<< this->_className
 			<< " "
 			<< this->_name
-			<< " CHAAAAARGE on "
+			<< " make it BOOM on "
 			<< target
 			<< ", causing "
 			<< this->_attack
-			<< " damages, sorry not sorry!"
+			<< " really bad damages!"
 			<< std::endl;
 		this->_energy--;
 	}
@@ -104,13 +106,26 @@ void	FragTrap::attack(const std::string & target)
 	return ;
 }
 
-void FragTrap::highFivesGuys(void)
+void	ScavTrap::guardGate(void)
 {
-    std::cout
-        << this->_className
-        << " "
-        << this->_name
-        << " is ready for an HIGH FIVES!!"
-        << std::endl;
-    return ;
+	if (this->_gkMode)
+	{
+		std::cout
+			<< this->_className
+			<< " "
+			<< this->_name
+			<< " is already in Gate Keeper mode!"
+			<< std::endl;
+	}
+	else
+	{
+		std::cout
+			<< this->_className
+			<< " "
+			<< this->_name
+			<< " is now in Gate Keeper mode!"
+			<< std::endl;
+			this->_gkMode = true;
+	}
+	return ;
 }
