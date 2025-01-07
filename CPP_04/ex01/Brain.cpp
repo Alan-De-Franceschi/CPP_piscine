@@ -1,31 +1,31 @@
-#include "Cat.hpp"
+#include "Brain.hpp"
 
 /****************************************************************************/
 /*                      Constructors / Destructors                          */
 /****************************************************************************/
 
-Cat::Cat(void)
+Brain::Brain(void)
 {
-	this->_type = "Cat";
+	this->_type = "Brain";
 	std::cout
-		<< "Cat: Constructor Called"
+		<< "Brain: Constructor Called"
 		<< std::endl;
 	return ;
 }
 
-Cat::Cat(Cat const & src)
+Brain::Brain(Brain const & src)
 {
 	*this = src;
 	std::cout
-		<< "Cat: Copy Constructor Called"
+		<< "Brain: Copy Constructor Called"
 		<< std::endl;
 	return ;
 }
 
-Cat::~Cat(void)
+Brain::~Brain(void)
 {
 	std::cout
-		<< "Cat: Destructor Called"
+		<< "Brain: Copy Destructor Called"
 		<< std::endl;
 	return;
 }
@@ -34,7 +34,7 @@ Cat::~Cat(void)
 /*                               Operators                                  */
 /****************************************************************************/
 
-Cat &	Cat::operator=(Cat const & rhs)
+Brain &	Brain::operator=(Brain const & rhs)
 {
 	Animal::operator=(rhs);
 	return (*this);
@@ -48,11 +48,11 @@ Cat &	Cat::operator=(Cat const & rhs)
 /*                           Members Functions                              */
 /****************************************************************************/
 
-void		Cat::makeSound(void) const
+void		Brain::makeSound(void) const
 {
     std::cout
         << this->_type
-        << ": MEOW!"
+        << ": WOOF!"
         << std::endl;
     return ;
 }

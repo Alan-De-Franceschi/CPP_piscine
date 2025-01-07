@@ -1,31 +1,31 @@
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
 /****************************************************************************/
 /*                      Constructors / Destructors                          */
 /****************************************************************************/
 
-Cat::Cat(void)
+WrongCat::WrongCat(void)
 {
-	this->_type = "Cat";
+	this->_type = "WrongCat";
 	std::cout
-		<< "Cat: Constructor Called"
+		<< "WrongCat: Constructor Called"
 		<< std::endl;
 	return ;
 }
 
-Cat::Cat(Cat const & src)
+WrongCat::WrongCat(WrongCat const & src)
 {
 	*this = src;
 	std::cout
-		<< "Cat: Copy Constructor Called"
+		<< "WrongCat: Copy Constructor Called"
 		<< std::endl;
 	return ;
 }
 
-Cat::~Cat(void)
+WrongCat::~WrongCat(void)
 {
 	std::cout
-		<< "Cat: Destructor Called"
+		<< "WrongCat: Destructor Called"
 		<< std::endl;
 	return;
 }
@@ -34,9 +34,9 @@ Cat::~Cat(void)
 /*                               Operators                                  */
 /****************************************************************************/
 
-Cat &	Cat::operator=(Cat const & rhs)
+WrongCat &	WrongCat::operator=(WrongCat const & rhs)
 {
-	Animal::operator=(rhs);
+	WrongAnimal::operator=(rhs);
 	return (*this);
 }
 
@@ -47,12 +47,3 @@ Cat &	Cat::operator=(Cat const & rhs)
 /****************************************************************************/
 /*                           Members Functions                              */
 /****************************************************************************/
-
-void		Cat::makeSound(void) const
-{
-    std::cout
-        << this->_type
-        << ": MEOW!"
-        << std::endl;
-    return ;
-}

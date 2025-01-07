@@ -1,32 +1,31 @@
-#include "Cat.hpp"
+#include "WrongAnimal.hpp"
 
 /****************************************************************************/
 /*                      Constructors / Destructors                          */
 /****************************************************************************/
 
-Cat::Cat(void)
+WrongAnimal::WrongAnimal(void) : _type("Undefined Wronganimal")
 {
-	this->_type = "Cat";
-	std::cout
-		<< "Cat: Constructor Called"
-		<< std::endl;
+    std::cout
+        << "WrongAnimal: Constructor Called"
+        << std::endl;
 	return ;
 }
 
-Cat::Cat(Cat const & src)
+WrongAnimal::WrongAnimal(WrongAnimal const & src)
 {
-	*this = src;
-	std::cout
-		<< "Cat: Copy Constructor Called"
-		<< std::endl;
+    *this = src;
+    std::cout
+        << "WrongAnimal: Copy Constructor Called"
+        << std::endl;
 	return ;
 }
 
-Cat::~Cat(void)
+WrongAnimal::~WrongAnimal(void)
 {
-	std::cout
-		<< "Cat: Destructor Called"
-		<< std::endl;
+    std::cout
+        << "WrongAnimal: Destructor Called"
+        << std::endl;
 	return;
 }
 
@@ -34,9 +33,9 @@ Cat::~Cat(void)
 /*                               Operators                                  */
 /****************************************************************************/
 
-Cat &	Cat::operator=(Cat const & rhs)
+WrongAnimal &	WrongAnimal::operator=(WrongAnimal const & rhs)
 {
-	Animal::operator=(rhs);
+	this->_type = rhs._type;
 	return (*this);
 }
 
@@ -44,15 +43,26 @@ Cat &	Cat::operator=(Cat const & rhs)
 /*                           Getters / Setters                              */
 /****************************************************************************/
 
+std::string	WrongAnimal::getType(void) const
+{
+	return (this->_type);
+}
+
+void	WrongAnimal::setType(int const type)
+{
+	this->_type = type;
+	return ;
+}
+
 /****************************************************************************/
 /*                           Members Functions                              */
 /****************************************************************************/
 
-void		Cat::makeSound(void) const
+void		WrongAnimal::makeSound(void) const
 {
     std::cout
         << this->_type
-        << ": MEOW!"
+        << ": undefined sound"
         << std::endl;
     return ;
 }
