@@ -7,7 +7,9 @@
 Animal::Animal(void) : _type("Undefined animal")
 {
     std::cout
+        << YELLOW
         << "Animal: Constructor Called"
+        << END
         << std::endl;
 	return ;
 }
@@ -16,7 +18,9 @@ Animal::Animal(Animal const & src)
 {
     *this = src;
     std::cout
+        << YELLOW
         << "Animal: Copy Constructor Called"
+        << END
         << std::endl;
 	return ;
 }
@@ -24,7 +28,9 @@ Animal::Animal(Animal const & src)
 Animal::~Animal(void)
 {
     std::cout
+        << YELLOW
         << "Animal: Destructor Called"
+        << END
         << std::endl;
 	return;
 }
@@ -61,8 +67,10 @@ void	Animal::setType(int const type)
 void		Animal::makeSound(void) const
 {
     std::cout
+        << YELLOW
         << this->_type
         << ": undefined sound"
+        << END
         << std::endl;
     return ;
 }

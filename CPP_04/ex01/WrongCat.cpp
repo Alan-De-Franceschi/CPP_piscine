@@ -1,37 +1,31 @@
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
 /****************************************************************************/
 /*                      Constructors / Destructors                          */
 /****************************************************************************/
 
-Dog::Dog(void)
+WrongCat::WrongCat(void)
 {
-	this->_type = "Dog";
+	this->_type = "WrongCat";
 	std::cout
-		<< GREEN
-		<< "Dog: Constructor Called"
-		<< END
+		<< "WrongCat: Constructor Called"
 		<< std::endl;
 	return ;
 }
 
-Dog::Dog(Dog const & src) : Animal(src)
+WrongCat::WrongCat(WrongCat const & src)
 {
 	*this = src;
 	std::cout
-		<< GREEN
-		<< "Dog: Copy Constructor Called"
-		<< END
+		<< "WrongCat: Copy Constructor Called"
 		<< std::endl;
 	return ;
 }
 
-Dog::~Dog(void)
+WrongCat::~WrongCat(void)
 {
 	std::cout
-		<< GREEN
-		<< "Dog: Copy Destructor Called"
-		<< END
+		<< "WrongCat: Destructor Called"
 		<< std::endl;
 	return;
 }
@@ -40,9 +34,9 @@ Dog::~Dog(void)
 /*                               Operators                                  */
 /****************************************************************************/
 
-Dog &	Dog::operator=(Dog const & rhs)
+WrongCat &	WrongCat::operator=(WrongCat const & rhs)
 {
-	Animal::operator=(rhs);
+	WrongAnimal::operator=(rhs);
 	return (*this);
 }
 
@@ -53,14 +47,3 @@ Dog &	Dog::operator=(Dog const & rhs)
 /****************************************************************************/
 /*                           Members Functions                              */
 /****************************************************************************/
-
-void		Dog::makeSound(void) const
-{
-    std::cout
-		<< GREEN
-        << this->_type
-        << ": WOOF!"
-		<< END
-        << std::endl;
-    return ;
-}

@@ -18,11 +18,13 @@ class Animal
 		Animal(Animal const & src);
 		virtual ~Animal(void);
 
-		Animal &		operator=(Animal const & rhs);
+		Animal &			operator=(Animal const & rhs);
 
-		std::string 	getType(void) const;
-		void	    	setType(int attribute);
-		virtual void	makeSound(void) const;
+		std::string 				getType(void) const;
+		void	    				setType(int attribute);
+		virtual const std::string	getIdea(int i) const; 
+		virtual void				setIdea(int i, const std::string & idea);
+		virtual void				makeSound(void) const = 0;
 
 	protected:
 

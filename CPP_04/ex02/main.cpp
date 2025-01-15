@@ -123,7 +123,7 @@ int main()
         << std::endl << std::endl;
     for (int i = 0; i < 4; i++)
         delete array[i];
-    
+
     std::cout
         << std::endl
         << GREEN
