@@ -60,6 +60,16 @@ Bureaucrat &    Bureaucrat::operator=(const Bureaucrat & rhs)
     return (*this);
 }
 
+const std::string & Bureaucrat::getName(void) const
+{
+    return (this->_name);
+}
+
+unsigned int        Bureaucrat::getGrade(void) const
+{
+    return (this->_grade);
+}
+
 void Bureaucrat::checkGrade(int grade) 
 {
     if (grade > 150)

@@ -5,7 +5,13 @@ int main(void)
 {
     try
     {
-        Bureaucrat a("Glam", 0);
+        Bureaucrat a("Pinky", 1);
+        std::cout
+            << a.getName()
+            << ": grade "
+            << a.getGrade()
+            << std::endl;
+        Bureaucrat b("Glam", 0);
     }
     catch(const std::exception & e)
     {

@@ -13,9 +13,11 @@ class   Bureaucrat
         Bureaucrat(std::string name, int grade);
         ~Bureaucrat(void);
 
-        Bureaucrat &    operator=(const Bureaucrat & rhs);
+        Bureaucrat &        operator=(const Bureaucrat & rhs);
 
-        void checkGrade(int grade);
+        const std::string & getName(void) const;
+        unsigned int        getGrade(void) const;
+
         class GradeTooLowException :  public std::exception
         {
             public:
@@ -35,6 +37,7 @@ class   Bureaucrat
         unsigned int        _grade;
 
         Bureaucrat(void);
+        void    checkGrade(int grade);
 
 };
 
