@@ -1,5 +1,9 @@
 #include "Bureaucrat.hpp"
 
+/****************************************************************************/
+/*                      Constructors / Destructors                          */
+/****************************************************************************/
+
 Bureaucrat::Bureaucrat(void)
 {
     return ;
@@ -55,12 +59,26 @@ Bureaucrat::~Bureaucrat(void)
     return ;
 }
 
+/****************************************************************************/
+/*                               Operators                                  */
+/****************************************************************************/
+
 Bureaucrat &    Bureaucrat::operator=(const Bureaucrat & rhs)
 {
     const_cast<std::string &>(this->_name) = rhs._name;
     this->_grade = rhs._grade;
     return (*this);
 }
+
+std::ostream &  operator<<(std::ostream & out, Bureaucrat const & rhs)
+{
+    out << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << ".";
+    return (out);
+}
+
+/****************************************************************************/
+/*                           Getters / Setters                              */
+/****************************************************************************/
 
 const std::string & Bureaucrat::getName(void) const
 {
@@ -71,6 +89,10 @@ int    Bureaucrat::getGrade(void) const
 {
     return (this->_grade);
 }
+
+/****************************************************************************/
+/*                           Members Functions                              */
+/****************************************************************************/
 
 void    Bureaucrat::checkGrade(int grade) 
 {
@@ -98,6 +120,10 @@ void    Bureaucrat::downGrade(void)
     return ;
 }
 
+/****************************************************************************/
+/*                               Exceptions                                 */
+/****************************************************************************/
+
 const char *Bureaucrat::GradeTooLowException::what() const throw() 
 {
     return ("Error: grade too low");
@@ -106,10 +132,4 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 const char *Bureaucrat::GradeTooHighException::what() const throw() 
 {
     return ("Error: grade too high");
-}
-
-std::ostream &  operator<<(std::ostream & out, Bureaucrat const & rhs)
-{
-    out << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << ".";
-    return (out);
 }
