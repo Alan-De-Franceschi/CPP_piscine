@@ -6,7 +6,11 @@
 # include <exception>
 
 # define GREEN 	"\033[0;32m"
+# define RED	"\033[0;31m"
+# define YELLOW	"\033[0;33m"
 # define END	"\033[0m"
+
+class   Form;
 
 class   Bureaucrat
 {
@@ -22,6 +26,7 @@ class   Bureaucrat
         int                 getGrade(void) const;
         void                upGrade(void);
         void                downGrade(void);
+        void                signForm(Form & form);
 
         class GradeTooLowException :  public std::exception
         {

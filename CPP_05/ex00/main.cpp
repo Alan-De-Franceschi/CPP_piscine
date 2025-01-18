@@ -29,7 +29,9 @@ int main(int ac, char **av)
         catch(const std::exception & e)
         {
             std::cout
+                << RED
                 << "Error -> quit"
+                << END
                 << std::endl;
            return (1);
         }
@@ -68,7 +70,9 @@ int main(int ac, char **av)
         catch(const std::exception & e)
         {
             std::cout
+                << RED
                 << "Error -> quit"
+                << END
                 << std::endl;
            return (1);
         }
@@ -97,16 +101,20 @@ int main(int ac, char **av)
         catch(Bureaucrat::GradeTooHighException & e)
         {
             std::cout
+                << RED
                 << e.what()
                 << std::endl
                 << "Error -> quit"
+                << END
                 << std::endl;
            return (1);
         }
         catch(const std::exception & e)
         {
             std::cout
+                << RED
                 << "Error -> quit"
+                << END
                 << std::endl;
            return (1);
         }
@@ -135,16 +143,20 @@ int main(int ac, char **av)
         catch(Bureaucrat::GradeTooLowException & e)
         {
             std::cout
+                << RED
                 << e.what()
                 << std::endl
                 << "Error -> quit"
+                << END
                 << std::endl;
            return (1);
         }
         catch(const std::exception & e)
         {
             std::cout
+                << RED
                 << "Error -> quit"
+                << END
                 << std::endl;
            return (1);
         }

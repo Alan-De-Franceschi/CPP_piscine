@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /****************************************************************************/
 /*                      Constructors / Destructors                          */
@@ -13,8 +14,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat & src)
 {
     *this = src;
     std::cout
+        << YELLOW
         << this->_name
         << ": Copy Constructor Called"
+        << END
         << std::endl;
     return ;
 }
@@ -22,8 +25,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat & src)
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
     std::cout
+        << YELLOW
         << this->_name
         << ": Constructor Called"
+        << END
         << std::endl;
     try
     {
@@ -31,19 +36,23 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
     }
     catch (GradeTooLowException & e)
     {
-        std::cout
+        std::cerr
+            << RED
             << this->_name
             << " "
             << e.what()
+            << END
             << std::endl;
         throw std::invalid_argument("grade");
     }
     catch (GradeTooHighException & e)
     {
-        std::cout
+        std::cerr
+            << RED
             << this->_name
             << " "
             << e.what()
+            << END
             << std::endl;
         throw std::invalid_argument("grade");
     }
@@ -53,8 +62,10 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 Bureaucrat::~Bureaucrat(void)
 {
     std::cout
+        << YELLOW
         << this->_name
         << ": Destructor Called"
+        << END
         << std::endl;
     return ;
 }
@@ -117,6 +128,38 @@ void    Bureaucrat::downGrade(void)
     if (this->_grade + 1 > 150)
         throw Bureaucrat::GradeTooLowException();
     this->_grade++;
+    return ;
+}
+
+void    Bureaucrat::signForm(Form & form)
+{
+    try
+    {
+        form.beSigned(*this);
+        std::cout
+            << "Bureaucrat "
+            << this->_name
+            << " signed "
+            << form.getName()
+            << " form"
+            <<std::endl;
+    }
+    catch(const Form::GradeTooLowException & e)
+    {
+        std::cerr
+            << RED        
+            << "Bureaucrat "
+            << this->_name
+            << " couldn’t sign "
+            << form.getName()
+            << " form because " 
+            << e.what()
+            << END
+            << std::endl;
+        std::cerr << "test";
+        throw std::invalid_argument("grade");
+    }
+    
     return ;
 }
 

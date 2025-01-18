@@ -9,8 +9,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat & src)
 {
     *this = src;
     std::cout
+        << YELLOW
         << this->_name
         << ": Copy Constructor Called"
+        << END
         << std::endl;
     return ;
 }
@@ -18,8 +20,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat & src)
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
     std::cout
+        << YELLOW
         << this->_name
         << ": Constructor Called"
+        << END
         << std::endl;
     try
     {
@@ -28,18 +32,22 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
     catch (GradeTooLowException & e)
     {
         std::cout
+            << RED
             << this->_name
             << " "
             << e.what()
+            << END
             << std::endl;
         throw std::invalid_argument("grade");
     }
     catch (GradeTooHighException & e)
     {
         std::cout
+            << RED
             << this->_name
             << " "
             << e.what()
+            << END
             << std::endl;
         throw std::invalid_argument("grade");
     }
@@ -49,8 +57,10 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 Bureaucrat::~Bureaucrat(void)
 {
     std::cout
+        << YELLOW
         << this->_name
         << ": Destructor Called"
+        << END
         << std::endl;
     return ;
 }

@@ -5,6 +5,12 @@
 # include <string>
 # include <exception>
 
+# define BLUE	"\033[0;36m"
+# define RED	"\033[0;31m"
+# define END	"\033[0m"
+
+class   Bureaucrat;
+
 class   Form
 {
     public:
@@ -13,7 +19,13 @@ class   Form
         Form(std::string name, int sigGrade, int exeGrade);
         ~Form(void);
 
-        Form &  operator=(const Form & rhs);
+        Form &              operator=(const Form & rhs);
+
+        const std::string & getName(void) const;
+        bool                getSigned(void) const;
+        const int &         getSignGrade(void) const;
+        const int &         getExexGrade(void) const;
+        void                beSigned(const Bureaucrat & brc);
 
         class   GradeTooLowException : public std::exception
         {
@@ -21,7 +33,7 @@ class   Form
 
                 virtual const char *what() const throw();
         };
-        class GradeTooHighException :  public std::exception
+        class   GradeTooHighException :  public std::exception
         {
             public:
 
@@ -37,8 +49,10 @@ class   Form
 
         Form(void);
         
-        void    checkGrades(void);
+        void                checkGrades(void) const;
 
 };
+
+std::ostream &  operator<<(std::ostream & outstream, const Form & rhs);
 
 #endif
