@@ -137,7 +137,7 @@ void    Form::checkGrades(void) const
 void    Form::beSigned(const Bureaucrat & brc)
 {
     if (brc.getGrade() >  this->_signGrade)
-        throw Bureaucrat::GradeTooLowException();
+        throw Form::GradeTooLowException();
     this->_signed = true;
     return ;
 }

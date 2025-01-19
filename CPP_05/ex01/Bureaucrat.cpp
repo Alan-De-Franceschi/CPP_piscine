@@ -144,7 +144,7 @@ void    Bureaucrat::signForm(Form & form)
             << " form"
             <<std::endl;
     }
-    catch(const Form::GradeTooLowException & e)
+    catch (Form::GradeTooLowException & e)
     {
         std::cerr
             << RED        
@@ -156,7 +156,6 @@ void    Bureaucrat::signForm(Form & form)
             << e.what()
             << END
             << std::endl;
-        std::cerr << "test";
         throw std::invalid_argument("grade");
     }
     
