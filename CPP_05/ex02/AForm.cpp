@@ -15,8 +15,7 @@ AForm::AForm(const AForm & src) : _signGrade(0), _execGrade(0)
     *this = src;
     std::cout
         << BLUE
-        << this->_name
-        << ": Copy Constructor Called"
+        << "AForm: Copy Constructor Called"
         << END
         << std::endl;
     return ;
@@ -26,8 +25,7 @@ AForm::AForm(std::string name, int sigGrade, int exeGrade) : _name(name), _signe
 {
     std::cout
         << BLUE
-        << this->_name
-        << ": Constructor Called"
+        << "AForm: Constructor Called"
         << END
         << std::endl;
     try
@@ -67,8 +65,7 @@ AForm::~AForm(void)
 {
     std::cout
         << BLUE
-        << this->_name
-        << ": Destructor Called"
+        << "AForm: Destructor Called"
         << END
         << std::endl;
     return ;

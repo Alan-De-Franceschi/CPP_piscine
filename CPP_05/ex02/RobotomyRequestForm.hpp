@@ -1,9 +1,9 @@
 #ifndef ROBOTOMY_HPP
 # define ROBOTOMY_HPP
 
+#include <cstdlib>
+#include <ctime>
 # include "AForm.hpp"
-
-class   Bureaucrat;
 
 class   RobotomyRequestForm : public AForm
 {
@@ -11,15 +11,16 @@ class   RobotomyRequestForm : public AForm
 
         RobotomyRequestForm(void);
         RobotomyRequestForm(const RobotomyRequestForm & src);
+        RobotomyRequestForm(std::string target);
         ~RobotomyRequestForm(void);
 
-        RobotomyRequestForm & operator=(RobotomyRequestForm & rhs);
+        RobotomyRequestForm &   operator=(RobotomyRequestForm & rhs);
 
-        void    beExecuted(const Bureaucrat & brc) const;
+        void                    execute(const Bureaucrat & executor) const;
 
     private:
 
-
+        std::string             _target;
 };
 
 #endif

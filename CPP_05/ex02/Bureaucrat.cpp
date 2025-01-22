@@ -144,7 +144,7 @@ void    Bureaucrat::signForm(AForm & form)
             << " form"
             <<std::endl;
     }
-    catch (AForm::GradeTooLowException & e)
+    catch (const AForm::GradeTooLowException & e)
     {
         std::cerr
             << RED        
@@ -165,16 +165,9 @@ void    Bureaucrat::executeForm(const AForm & form)
 {
     try
     {
-        form.beExecuted(*this);
-        std::cout
-            << "Bureaucrat "
-            << this->_name
-            << " execute "
-            << form.getName()
-            << " form"
-            << std::endl;
+        form.execute(*this);
     }
-    catch (AForm::GradeTooLowException & e)
+    catch (const AForm::GradeTooLowException & e)
     {
         std::cerr
             << RED        
@@ -188,7 +181,7 @@ void    Bureaucrat::executeForm(const AForm & form)
             << std::endl;
         throw std::invalid_argument("grade");
     }
-    catch (AForm::FormNotSigned & e)
+    catch (const AForm::FormNotSigned & e)
     {
         std::cerr
             << RED        
@@ -201,6 +194,16 @@ void    Bureaucrat::executeForm(const AForm & form)
             << END
             << std::endl;
         throw std::invalid_argument("signed");
+    }
+    catch (const std::ios_base::failure & e)
+    {
+        std::cerr
+            << RED
+            << e.what()
+            << ": not open"
+            << END
+            << std::endl;
+        throw std::exception();
     }
 }
 

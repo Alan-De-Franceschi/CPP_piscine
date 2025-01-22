@@ -4,12 +4,12 @@
 # include <iostream>
 # include <string>
 # include <exception>
+# include <fstream>
+# include "Bureaucrat.hpp"
 
 # define BLUE	"\033[0;36m"
 # define RED	"\033[0;31m"
 # define END	"\033[0m"
-
-class   Bureaucrat;
 
 class   AForm
 {
@@ -26,7 +26,7 @@ class   AForm
         const int &         getSignGrade(void) const;
         const int &         getExecGrade(void) const;
         void                beSigned(const Bureaucrat & brc);
-        virtual void        beExecuted(const Bureaucrat & brc) const = 0;
+        virtual void        execute(const Bureaucrat & executor) const = 0;
 
         class   GradeTooLowException : public std::exception
         {
