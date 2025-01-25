@@ -46,6 +46,11 @@ ScalarConverter &   ScalarConverter::operator=(const ScalarConverter & rhs)
 /*                           Members Functions                              */
 /****************************************************************************/
 
+static  bool    isInt(std::string & literal)
+{
+    return (false);
+}
+
 void    ScalarConverter::convert(std::string literal)
 {
     return ;

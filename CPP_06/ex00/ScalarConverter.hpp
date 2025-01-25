@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <exception>
 
 # define BLUE	"\033[0;36m"
 # define RED	"\033[0;31m"
@@ -14,7 +15,7 @@ class   ScalarConverter
     
         ScalarConverter(void);
         ScalarConverter(const ScalarConverter & src);
-        ~ScalarConverter(void);
+        virtual ~ScalarConverter(void) = 0;
 
         ScalarConverter &   operator=(const ScalarConverter & rhs);
 
