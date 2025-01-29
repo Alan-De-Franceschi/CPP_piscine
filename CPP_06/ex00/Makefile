@@ -1,4 +1,4 @@
-NAME			=	scalar
+NAME			=	converter
 
 CFLAGS			=	-Wall -Wextra -Werror -I INCLUDES -std=c++98
 
@@ -49,12 +49,12 @@ all:  ${NAME}
 
 ${NAME}: ${OBJECTS} ${INCLUDES}
 	@${CC} ${CFLAGS} ${OBJECTS} -o ${NAME}
-	@echo "${COLOUR_GREEN}\33[2K\nscalar compiled with : \n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\33[2K\nconverter compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS}\n"
 
 ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.cpp
 	@mkdir -p ${dir $@}
-	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling scalar :${COLOUR_END} $@"
+	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling converter :${COLOUR_END} $@"
 
 clean:
 	@rm -rf ${OBJECTS_PATH}
@@ -62,7 +62,7 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
-	@echo "${COLOUR_GREEN}\nscalar cleaned\n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\nconverter cleaned\n${COLOUR_END}"
 
 re: fclean all
 
