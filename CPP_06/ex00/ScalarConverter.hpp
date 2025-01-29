@@ -32,10 +32,12 @@ void    isChar(std::string & literal, int & type);
 void    isInt(std::string & literal, int & type);
 void    isFloat(std::string & literal, int & type);
 void    isDouble(std::string & literal, int & type);
+void    isNone(std::string & literal, int & type);
 
 void    convertChar(std::string & literal);
 void    convertInt(std::string & literal);
 void    convertFloat(std::string & literal);
 void    convertDouble(std::string & literal);
+void    convertNone(std::string & literal);
 
 #endif

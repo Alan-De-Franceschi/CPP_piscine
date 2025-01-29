@@ -61,7 +61,7 @@ void    convertFloat(std::string & literal)
 
     std::stringstream strm(literal);
     if (!(strm >> f))
-        throw std::invalid_argument("Error: wrong input -> float overflow");
+        throw std::invalid_argument("Error: wrong input -> float");
 
     if (f > 127 || f < 0)
         std::cout << "char: Impossible" << std::endl;
@@ -96,7 +96,7 @@ void    convertDouble(std::string & literal)
 
     std::stringstream strm(literal);
     if (!(strm >> d))
-        throw std::invalid_argument("Error: wrong input -> double overflow");
+        throw std::invalid_argument("Error: wrong input -> double");
 
     if (d > 127 || d < 0)
         std::cout << "char: Impossible" << std::endl;
@@ -124,4 +124,58 @@ void    convertDouble(std::string & literal)
     std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
 
     return ;
+}
+
+void    convertNone(std::string & literal)
+{
+    if (literal == "")
+        throw std::invalid_argument("Error -> empty string");
+    else if (literal == "nan")
+    {
+        std::cout
+            << "char: Impossible" << std::endl
+            << "int: Impossible" << std::endl
+            << "float: nanf" << std::endl
+            << "double: nan" << std::endl;
+    }
+    else if (literal == "nanf")
+    {
+        std::cout
+            << "char: Impossible" << std::endl
+            << "int: Impossible" << std::endl
+            << "float: nanf" << std::endl
+            << "double: nan" << std::endl;
+    }
+    else if (literal == "+inf")
+    {
+        std::cout
+            << "char: Impossible" << std::endl
+            << "int: Impossible" << std::endl
+            << "float: Impossible" << std::endl
+            << "double: +inf" << std::endl;
+    }
+    else if (literal == "-inf")
+    {
+        std::cout
+            << "char: Impossible" << std::endl
+            << "int: Impossible" << std::endl
+            << "float: Impossible" << std::endl
+            << "double: -inf" << std::endl;
+    }
+    else if (literal == "+inff")
+    {
+        std::cout
+            << "char: Impossible" << std::endl
+            << "int: Impossible" << std::endl
+            << "float: +inff" << std::endl
+            << "double: 340282346638528859811704183484516925440.0" << std::endl;
+    }
+    else if (literal == "-inff")
+    {
+        std::cout
+            << "char: Impossible" << std::endl
+            << "int: Impossible" << std::endl
+            << "float: -inff" << std::endl
+            << "double: -340282346638528859811704183484516925440.0" << std::endl;
+    }
 }

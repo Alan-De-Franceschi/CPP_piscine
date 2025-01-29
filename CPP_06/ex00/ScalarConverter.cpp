@@ -56,6 +56,7 @@ void    ScalarConverter::convert(std::string literal)
     isInt(literal, type);
     isFloat(literal, type);
     isDouble(literal, type);
+    isNone(literal, type);
 
     switch (type)
     {
@@ -72,6 +73,9 @@ void    ScalarConverter::convert(std::string literal)
             break ;
         case 4:
             convertDouble(literal);
+            break ;
+        case 5:
+            convertNone(literal);
             break ;
     }
     return ;
