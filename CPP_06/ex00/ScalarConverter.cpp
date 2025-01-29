@@ -21,6 +21,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter & src)
         << "ScalarConverter: Copy Constructor Called"
         << END
         << std::endl;
+    (void)src;
     return ;
 }
 
@@ -39,6 +40,7 @@ ScalarConverter::~ScalarConverter(void)
 
 ScalarConverter &   ScalarConverter::operator=(const ScalarConverter & rhs)
 {
+    (void)rhs;
     return (*this);
 }
 
@@ -46,35 +48,31 @@ ScalarConverter &   ScalarConverter::operator=(const ScalarConverter & rhs)
 /*                           Members Functions                              */
 /****************************************************************************/
 
-static bool isInt(std::string & literal)
-{
-    long    num;
-
-    if (literal.find_first_not_of("0123456789") != std::string::npos)
-        return (false);
-    
-    return (true);
-}
-
-static bool isChar(std::string & literal)
-{
-
-    return (false);
-}
-
-static bool isDouble(std::string & literal)
-{
-
-    return (false);
-}
-
-static bool isFloat(std::string & literal)
-{
-
-    return (false);
-}
-
 void    ScalarConverter::convert(std::string literal)
 {
+    int type = 0;
+
+    isChar(literal, type);
+    isInt(literal, type);
+    isFloat(literal, type);
+    isDouble(literal, type);
+
+    switch (type)
+    {
+        case 0:
+            throw std::invalid_argument("Error: wrong input");
+        case 1:
+            convertChar(literal);
+            break ;
+        case 2:
+            convertInt(literal);
+            break ;
+        case 3:
+            convertFloat(literal);
+            break ;
+        case 4:
+            convertDouble(literal);
+            break ;
+    }
     return ;
 }

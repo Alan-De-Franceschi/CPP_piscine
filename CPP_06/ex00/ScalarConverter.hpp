@@ -4,6 +4,10 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <sstream>
+#include <limits.h>
+#include <iomanip>
+#include <cmath>
 
 # define BLUE	"\033[0;36m"
 # define RED	"\033[0;31m"
@@ -23,5 +27,15 @@ class   ScalarConverter
 
     private:
 };
+
+void    isChar(std::string & literal, int & type);
+void    isInt(std::string & literal, int & type);
+void    isFloat(std::string & literal, int & type);
+void    isDouble(std::string & literal, int & type);
+
+void    convertChar(std::string & literal);
+void    convertInt(std::string & literal);
+void    convertFloat(std::string & literal);
+void    convertDouble(std::string & literal);
 
 #endif
