@@ -46,8 +46,31 @@ ScalarConverter &   ScalarConverter::operator=(const ScalarConverter & rhs)
 /*                           Members Functions                              */
 /****************************************************************************/
 
-static  bool    isInt(std::string & literal)
+static bool isInt(std::string & literal)
 {
+    long    num;
+
+    if (literal.find_first_not_of("0123456789") != std::string::npos)
+        return (false);
+    
+    return (true);
+}
+
+static bool isChar(std::string & literal)
+{
+
+    return (false);
+}
+
+static bool isDouble(std::string & literal)
+{
+
+    return (false);
+}
+
+static bool isFloat(std::string & literal)
+{
+
     return (false);
 }
 
