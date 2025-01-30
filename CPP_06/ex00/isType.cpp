@@ -18,7 +18,7 @@ void    isInt(std::string & literal, int & type)
         return ;
     std::stringstream strm(literal);
     strm >> num;
-    if (num > INT_MAX || num < INT_MIN)
+    if (num == std::numeric_limits<int>::min() || num == std::numeric_limits<int>::max())
         return ;
     type = 2;
     return ;

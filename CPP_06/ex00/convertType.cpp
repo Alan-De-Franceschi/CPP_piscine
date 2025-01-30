@@ -75,7 +75,7 @@ void    convertFloat(std::string & literal)
     }
 
     i = static_cast<int>(f);
-    if (i == INT_MIN)
+    if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
         std::cout << "int: Impossible" << std::endl;
     std::cout << "int: " << i << std::endl;
 
@@ -110,7 +110,7 @@ void    convertDouble(std::string & literal)
     }
 
     i = static_cast<int>(d);
-    if (i == INT_MIN)
+    if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
         std::cout << "int: Impossible" << std::endl;
     else
         std::cout << "int: " << i << std::endl;
@@ -128,54 +128,120 @@ void    convertDouble(std::string & literal)
 
 void    convertNone(std::string & literal)
 {
+    char    c;
+    int     i;
+    float   f;
+    double  d;
+
     if (literal == "")
         throw std::invalid_argument("Error -> empty string");
+
     else if (literal == "nan")
     {
-        std::cout
-            << "char: Impossible" << std::endl
-            << "int: Impossible" << std::endl
-            << "float: nanf" << std::endl
-            << "double: nan" << std::endl;
+        d = std::numeric_limits<double>::quiet_NaN();
+        c = static_cast<char>(d);
+        i = static_cast<int>(d);
+        f = static_cast<float>(d);
+
+        std::cout << "char: Impossible" << std::endl;
+
+        if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
+            std::cout << "int: Impossible" << std::endl;
+
+        if (isinff(f))
+            std::cout << "float: Impossible" << std::endl;
+        else
+            std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
+
     else if (literal == "nanf")
     {
-        std::cout
-            << "char: Impossible" << std::endl
-            << "int: Impossible" << std::endl
-            << "float: nanf" << std::endl
-            << "double: nan" << std::endl;
+        f = std::numeric_limits<float>::quiet_NaN();
+        c = static_cast<char>(f);
+        i = static_cast<int>(f);
+        d = static_cast<double>(f);
+
+        std::cout << "char: Impossible" << std::endl;
+
+        if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
+            std::cout << "int: Impossible" << std::endl;
+
+        if (isinff(f))
+            std::cout << "float: Impossible" << std::endl;
+        else
+            std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
+
     else if (literal == "+inf")
     {
-        std::cout
-            << "char: Impossible" << std::endl
-            << "int: Impossible" << std::endl
-            << "float: Impossible" << std::endl
-            << "double: +inf" << std::endl;
+        d = std::numeric_limits<double>::infinity();
+        c = static_cast<char>(d);
+        i = static_cast<int>(d);
+        f = static_cast<float>(d);
+
+        std::cout << "char: Impossible" << std::endl;
+
+        if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
+            std::cout << "int: Impossible" << std::endl;
+
+        std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
+
     else if (literal == "-inf")
     {
-        std::cout
-            << "char: Impossible" << std::endl
-            << "int: Impossible" << std::endl
-            << "float: Impossible" << std::endl
-            << "double: -inf" << std::endl;
+        d = (std::numeric_limits<double>::infinity()) * -1;
+        c = static_cast<char>(d);
+        i = static_cast<int>(d);
+        f = static_cast<float>(d);
+
+        std::cout << "char: Impossible" << std::endl;
+
+        if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
+            std::cout << "int: Impossible" << std::endl;
+
+        std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
+
     else if (literal == "+inff")
     {
-        std::cout
-            << "char: Impossible" << std::endl
-            << "int: Impossible" << std::endl
-            << "float: +inff" << std::endl
-            << "double: 340282346638528859811704183484516925440.0" << std::endl;
+        f = std::numeric_limits<float>::infinity();
+        c = static_cast<char>(f);
+        i = static_cast<int>(f);
+        d = static_cast<double>(f);
+
+        std::cout << "char: Impossible" << std::endl;
+
+        if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
+            std::cout << "int: Impossible" << std::endl;
+
+        std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
+
     else if (literal == "-inff")
     {
-        std::cout
-            << "char: Impossible" << std::endl
-            << "int: Impossible" << std::endl
-            << "float: -inff" << std::endl
-            << "double: -340282346638528859811704183484516925440.0" << std::endl;
+        f = (std::numeric_limits<float>::infinity()) * -1;
+        c = static_cast<char>(f);
+        i = static_cast<int>(f);
+        d = static_cast<double>(f);
+
+        std::cout << "char: Impossible" << std::endl;
+
+        if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
+            std::cout << "int: Impossible" << std::endl;
+
+        std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
+    return ;
 }

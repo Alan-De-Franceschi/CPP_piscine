@@ -5,7 +5,7 @@
 #include <string>
 #include <exception>
 #include <sstream>
-#include <limits.h>
+#include <limits>
 #include <iomanip>
 #include <cmath>
 
