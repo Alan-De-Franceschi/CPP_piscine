@@ -4,14 +4,22 @@
 
 int main(void)
 {
-    Base *ptr;
+    Base *ptr = NULL;
 
-    ptr = generate();
+    try
+    {
+        ptr = generate();
 
-    identify(ptr);
+        identify(ptr);
 
-    identify(*ptr);
-    
-    delete ptr;
+        identify(*ptr);
+
+        delete ptr;
+    }
+    catch (const std::exception& e)
+    {
+        delete ptr;
+        std::cerr << e.what() << std::endl;
+    }
     return (0); 
 }
