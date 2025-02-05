@@ -19,7 +19,6 @@ COLOUR_END		=	\033[0m
 SOURCES_PATH	=	./
 
 SOURCES_MAIN	= 	main.cpp \
-						whatever.cpp \
 	
 # **************************************************************************** #
 #                                                                              #
