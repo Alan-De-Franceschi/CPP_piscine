@@ -14,7 +14,9 @@ void    isInt(std::string & literal, int & type)
 {
     long    num;
 
-    if (literal.find_first_not_of("-+0123456789") != std::string::npos || literal.length() == 1)
+    if (literal.find_first_not_of("-+0123456789") != std::string::npos)
+        return ;
+    if ((literal.length() == 1 && literal[0] == '-') || (literal.length() == 1 && literal[0] == '+'))
         return ;
     std::stringstream strm(literal);
     strm >> num;

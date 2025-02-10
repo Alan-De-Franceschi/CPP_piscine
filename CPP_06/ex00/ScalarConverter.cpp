@@ -63,19 +63,19 @@ void    ScalarConverter::convert(std::string literal)
         case 0:
             throw std::invalid_argument("Error: wrong input");
         case 1:
-            convertChar(literal);
+            convertChar(literal.c_str());
             break ;
         case 2:
-            convertInt(literal);
+            convertInt(literal.c_str());
             break ;
         case 3:
-            convertFloat(literal);
+            convertFloat(literal.c_str());
             break ;
         case 4:
-            convertDouble(literal);
+            convertDouble(literal.c_str());
             break ;
         case 5:
-            convertNone(literal);
+            convertNone(literal.c_str());
             break ;
     }
     return ;

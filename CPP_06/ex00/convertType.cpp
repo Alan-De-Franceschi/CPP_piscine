@@ -1,6 +1,6 @@
 #include "ScalarConverter.hpp"
 
-void    convertChar(std::string & literal)
+void    convertChar(const char* literal)
 {
     char    c;
     int     i;
@@ -25,7 +25,7 @@ void    convertChar(std::string & literal)
     return ;
 }
 
-void    convertInt(std::string & literal)
+void    convertInt(const char* literal)
 {
     char    c;
     int     i;
@@ -52,15 +52,15 @@ void    convertInt(std::string & literal)
     return ;
 }
 
-void    convertFloat(std::string & literal)
+void    convertFloat(const char* literal)
 {
     char    c;
     int     i;
-    float   f;
+    double  f;
     double  d;
 
-    std::stringstream strm(literal);
-    if (!(strm >> f))
+    f = std::strtod(literal, NULL);
+    if (f < std::numeric_limits<float>::min() || f > std::numeric_limits<float>::max())
         throw std::invalid_argument("Error: wrong input -> float");
 
     if (f > 127 || f < 0)
@@ -77,9 +77,10 @@ void    convertFloat(std::string & literal)
     i = static_cast<int>(f);
     if (i == std::numeric_limits<int>::min() || i == std::numeric_limits<int>::max())
         std::cout << "int: Impossible" << std::endl;
-    std::cout << "int: " << i << std::endl;
+    else
+        std::cout << "int: " << i << std::endl;
 
-    std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) <<f << "f" << std::endl;
 
     d = static_cast<double>(f);
     std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
@@ -87,7 +88,7 @@ void    convertFloat(std::string & literal)
     return ;
 }
 
-void    convertDouble(std::string & literal)
+void    convertDouble(const char* literal)
 {
     char    c;
     int     i;
@@ -126,17 +127,18 @@ void    convertDouble(std::string & literal)
     return ;
 }
 
-void    convertNone(std::string & literal)
+void    convertNone(const char* literal)
 {
     char    c;
     int     i;
     float   f;
     double  d;
+    std::string str = literal;
 
-    if (literal == "")
+    if (str == "")
         throw std::invalid_argument("Error -> empty string");
 
-    else if (literal == "nan")
+    else if (str == "nan")
     {
         d = std::numeric_limits<double>::quiet_NaN();
         c = static_cast<char>(d);
@@ -156,7 +158,7 @@ void    convertNone(std::string & literal)
         std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
 
-    else if (literal == "nanf")
+    else if (str == "nanf")
     {
         f = std::numeric_limits<float>::quiet_NaN();
         c = static_cast<char>(f);
@@ -176,7 +178,7 @@ void    convertNone(std::string & literal)
         std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
 
-    else if (literal == "+inf")
+    else if (str == "+inf")
     {
         d = std::numeric_limits<double>::infinity();
         c = static_cast<char>(d);
@@ -193,7 +195,7 @@ void    convertNone(std::string & literal)
         std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
 
-    else if (literal == "-inf")
+    else if (str == "-inf")
     {
         d = (std::numeric_limits<double>::infinity()) * -1;
         c = static_cast<char>(d);
@@ -210,7 +212,7 @@ void    convertNone(std::string & literal)
         std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
 
-    else if (literal == "+inff")
+    else if (str == "+inff")
     {
         f = std::numeric_limits<float>::infinity();
         c = static_cast<char>(f);
@@ -227,7 +229,7 @@ void    convertNone(std::string & literal)
         std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
 
-    else if (literal == "-inff")
+    else if (str == "-inff")
     {
         f = (std::numeric_limits<float>::infinity()) * -1;
         c = static_cast<char>(f);
