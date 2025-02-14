@@ -1,4 +1,4 @@
-NAME			=	whatever
+NAME			=	easyfind
 
 CFLAGS			=	-Wall -Wextra -Werror -I INCLUDES -std=c++98
 
@@ -36,7 +36,7 @@ OBJECTS			=	$(addprefix ${OBJECTS_PATH}, ${SOURCES_MAIN:.cpp=.o}) \
 #                                                                              #
 # **************************************************************************** #
 
-INCLUDES		=	whatever.hpp \
+INCLUDES		=	easyfind.hpp \
 
 # **************************************************************************** #
 #                                                                              #
@@ -48,12 +48,12 @@ all:  ${NAME}
 
 ${NAME}: ${OBJECTS} ${INCLUDES}
 	@${CC} ${CFLAGS} ${OBJECTS} -o ${NAME}
-	@echo "${COLOUR_GREEN}\33[2K\nwhatever compiled with : \n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\33[2K\neasyfind compiled with : \n${COLOUR_END}"
 	@echo "	${CC} ${CFLAGS}\n"
 
 ${OBJECTS_PATH}%.o:	${SOURCES_PATH}%.cpp
 	@mkdir -p ${dir $@}
-	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling whatever :${COLOUR_END} $@"
+	@${CC} ${CFLAGS} -c $< -o $@ && printf "\33[2K\r${YELLOW}Compiling easyfind :${COLOUR_END} $@"
 
 clean:
 	@rm -rf ${OBJECTS_PATH}
@@ -61,7 +61,7 @@ clean:
 fclean:
 	@rm -rf ${OBJECTS_PATH}
 	@rm -f ${NAME}
-	@echo "${COLOUR_GREEN}\nwhatever cleaned\n${COLOUR_END}"
+	@echo "${COLOUR_GREEN}\neasyfind cleaned\n${COLOUR_END}"
 
 re: fclean all
 
