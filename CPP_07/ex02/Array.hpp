@@ -19,19 +19,19 @@ class   Array
 
         Array(void);
         Array(const Array & src);
-        Array(unsigned int size);
+        Array(int size);
         ~Array(void);
 
         Array &                 operator=(const Array & rhs);
-        T &                     operator[](unsigned int i);
-        const T &               operator[](unsigned int i) const;
+        T &                     operator[](int i);
+        const T &               operator[](int i) const;
 
-        unsigned int            size(void) const;
+        int                     size(void) const;
 
     private:
 
         T*                      _array;
-        unsigned int            _size;
+        int                     _size;
 };  
 
 template<typename T>
@@ -47,13 +47,15 @@ Array<T>::Array(void) : _size(0)
 }
 
 template<typename T>
-Array<T>::Array(unsigned int size) : _size(size)
+Array<T>::Array(int size) : _size(size)
 {
     std::cout
         << YELLOW
         << "Array: Constructor Called"
         << END
         << std::endl;
+    if (this->_size < 0)
+        throw std::invalid_argument("Error: Array size can't be negative");
     this->_array = new T[size]();
 }
 
@@ -88,29 +90,29 @@ Array<T> & Array<T>::operator=(const Array & rhs)
     this->_size = rhs._size;
     delete [] this->_array;
     this->_array = new T[rhs._size]();
-    for (unsigned int i = 0; i < this->_size; i++)
+    for (int i = 0; i < this->_size; i++)
         this->_array[i] = rhs._array[i];
     return (*this);
 }
 
 template<typename T>
-T & Array<T>::operator[](unsigned int i)
+T & Array<T>::operator[](int i)
 {
-    if (i >= this->_size)
+    if (i >= this->_size || i < 0)
         throw std::out_of_range("Operator[]: Index is out of bounds");
     return (this->_array[i]);
 }
 
 template<typename T>
-const T & Array<T>::operator[](unsigned int i) const
+const T & Array<T>::operator[](int i) const
 {
-    if (i >= this->_size)
+    if (i >= this->_size || i < 0)
         throw std::out_of_range("Operator[]: Index is out of bounds");
     return (this->_array[i]);
 }
 
 template<typename T>
-unsigned int    Array<T>::size(void) const
+int    Array<T>::size(void) const
 {
     return (this->_size);
 }

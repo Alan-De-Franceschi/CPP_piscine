@@ -7,7 +7,7 @@ int main(void)
         Array<int>  defarray(4);
 
         std::cout << std::endl << GREEN << "Default Array:" << END << std::endl;
-        for (unsigned int i = 0; i < defarray.size(); i++)
+        for (int i = 0; i < defarray.size(); i++)
             std::cout << defarray[i] << std::endl;
         std::cout << std::endl;
 
@@ -19,7 +19,7 @@ int main(void)
         //iarray[4] = 4;
 
         std::cout << std::endl << GREEN << "Int Array:" << END << std::endl;
-        for (unsigned int i = 0; i < iarray.size(); i++)
+        for (int i = 0; i < iarray.size(); i++)
             std::cout << iarray[i] << std::endl;
         std::cout << std::endl;
         
@@ -31,7 +31,7 @@ int main(void)
         //sarray[4] = "LOL";
 
         std::cout << std::endl << GREEN << "Str Array:" << END << std::endl;
-        for (unsigned int i = 0; i < sarray.size(); i++)
+        for (int i = 0; i < sarray.size(); i++)
             std::cout << sarray[i] << std::endl;
         std::cout << std::endl;
 
@@ -43,32 +43,32 @@ int main(void)
         //darray[4] = 4.0;
 
         std::cout << std::endl << GREEN << "Double Array:" << END << std::endl;
-        for (unsigned int i = 0; i < darray.size(); i++)
+        for (int i = 0; i < darray.size(); i++)
             std::cout << std::fixed << std::setprecision(1) << darray[i] << std::endl;
         std::cout << std::endl;
 
         const Array<int> carray(iarray);
 
         std::cout << std::endl << GREEN << "Const Array:" << END << std::endl;
-        for (unsigned int i = 0; i < carray.size(); i++)
+        for (int i = 0; i < carray.size(); i++)
             std::cout << carray[i] << std::endl;
         std::cout << std::endl;
 
         Array<int> copy_array(iarray);
 
         std::cout << std::endl << GREEN << "Copy Array:" << END << std::endl;
-        for (unsigned int i = 0; i < copy_array.size(); i++)
+        for (int i = 0; i < copy_array.size(); i++)
             std::cout << carray[i] << std::endl;
         std::cout << std::endl;
 
         copy_array[0] = 500;
 
         std::cout << std::endl << BLUE << "Test deep copy:" << END <<std::endl << GREEN << std::endl << "Int Array:" << END << std::endl;
-        for (unsigned int i = 0; i < iarray.size(); i++)
+        for (int i = 0; i < iarray.size(); i++)
             std::cout << iarray[i] << std::endl;
 
         std::cout << std::endl << GREEN << "Copy Array:" << END << std::endl;
-        for (unsigned int i = 0; i < copy_array.size(); i++)
+        for (int i = 0; i < copy_array.size(); i++)
             std::cout << copy_array[i] << std::endl;
         std::cout << std::endl;
 
