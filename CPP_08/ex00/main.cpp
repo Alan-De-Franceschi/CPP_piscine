@@ -10,16 +10,47 @@ int main(void)
     for (int i = 0; i < 10; i++)
         myVector.push_back(i);
 
-    int             num = 2;
+    int             num = 17;
 
-    std::cout
-        << "Is num in list = "
-        << easyfind(myList, num)
-        << std::endl;
+    if (easyfind(myList, num))
+    {
+        std::cout
+            << GREEN
+            << "Num = "
+            << num
+            << " is in myList"
+            << END
+            << std::endl;
+    }
+    else
+    {
+        std::cout
+            << RED
+            << "Num = "
+            << num
+            << " is not in myList"
+            << END
+            << std::endl;
+    }
 
-    std::cout
-        << "Is num in vector = "
-        << easyfind(myVector, num)
-        << std::endl;
-    return (0);
+    if (easyfind(myVector, num))
+    {
+        std::cout
+            << GREEN
+            << "Num = "
+            << num
+            << " is in myVector"
+            << END
+            << std::endl;
+    }
+    else
+    {
+        std::cout
+            << RED
+            << "Num = "
+            << num
+            << " is not in myVector"
+            << END
+            << std::endl;
+    }
 }
