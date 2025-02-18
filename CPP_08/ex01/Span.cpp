@@ -63,6 +63,14 @@ void    Span::addNumber(int number)
     return ;
 }
 
+void    Span::fillNumbers(std::list<int> sequence)
+{
+    if (this->_list.size() + sequence.size() > this->_nbElements)
+        throw Span::ListFull();
+    this->_list.insert(this->_list.end(), sequence.begin(), sequence.end());
+    return ;
+}
+
 int Span::shortestSpan(void)
 {
     if (this->_list.empty() || this->_list.size() == 1)

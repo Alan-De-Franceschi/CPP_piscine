@@ -23,6 +23,7 @@ class   Span
         Span &          operator=(const Span & rhs);
 
         void            addNumber(int number);
+        void            fillNumbers(std::list<int> sequence);
         int             shortestSpan(void); 
         int             longestSpan(void);
 
