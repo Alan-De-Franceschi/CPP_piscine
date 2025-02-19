@@ -142,9 +142,12 @@ int main(void)
         << std::endl << std::endl;
 
         Span test(200000);
-        
+        std::list<int>  list;
+
         for (int i = 0; i < 200000; i++)
-            test.addNumber(i);
+            list.push_back(i);
+        
+        test.fillNumbers(list);
 
         std::cout << "Shortest span = " << test.shortestSpan() << std::endl;
         std::cout << "Longest span = " << test.longestSpan() << std::endl;
@@ -172,9 +175,49 @@ int main(void)
         << std::endl << std::endl;
 
         Span test(200000);
-        
+        std::list<int>  list;
+
         for (int i = 0; i <= 200000; i++)
-            test.addNumber(i);
+            list.push_back(i);
+        
+        test.fillNumbers(list);
+    }
+    catch (std::exception & e)
+    {
+        std::cerr
+            << RED
+            << e.what()
+            << END
+            << std::endl;
+    }
+
+    try
+    {
+        std::cout
+        << std::endl
+        << GREEN
+        << "================================================"
+        <<std::endl
+        << "==                   TEST 6                   =="
+        << std::endl
+        << "================================================"
+        << END
+        << std::endl << std::endl;
+
+        Span test(20);
+        std::list<int>  list;
+
+        for (int i = 0; i < 19; i++)
+            list.push_back(i);
+
+        test.addNumber(10);
+
+        test.fillNumbers(list);
+
+        //test.addNumber(10);
+
+        std::cout << "Shortest span = " << test.shortestSpan() << std::endl;
+        std::cout << "Longest span = " << test.longestSpan() << std::endl;
     }
     catch (std::exception & e)
     {
