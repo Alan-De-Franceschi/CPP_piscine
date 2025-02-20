@@ -80,51 +80,49 @@ int main(void)
         << END
         << std::endl << std::endl;
 
-        std::list<int> myList;
+    std::list<int> myList;
+    myList.push_back(5);
+    myList.push_back(17);
 
-        myList.push_back(5);
-        myList.push_back(17);
-    
-        std::cout << "Top = " << myList.back() << std::endl;
-        std::cout << "Size before pop = " << myList.size() << std::endl;
-        myList.pop_back();
-        std::cout << "Size after pop = " << myList.size() << std::endl;
-    
-        myList.push_back(3);
-        myList.push_back(5);
-        myList.push_back(737);
-        //[...]
-        myList.push_back(0);
-    
-        std::cout << std::endl << BLUE << "Test iterator = " << END << std::endl << std::endl;
-    
-        std::list<int>::iterator itl = myList.begin();
-        std::list<int>::iterator itel = myList.end();
-    
-        ++itl;
-        --itl;
-    
-        while (itl != itel)
-        {
-        std::cout << *itl << std::endl;
-        ++itl;
-        }
+    std::cout << "Top = " << myList.back() << std::endl;
+    std::cout << "Size before pop = " << myList.size() << std::endl;
+    myList.pop_back();
+    std::cout << "Size after pop = " << myList.size() << std::endl;
 
-        std::cout << std::endl << BLUE << "Test Reverse iterator = " << END << std::endl << std::endl;
-    
-        std::list<int>::reverse_iterator ritl = myList.rbegin();
-        std::list<int>::reverse_iterator ritel = myList.rend();
-    
-        ++ritl;
-        --ritl;
-    
-        while (ritl != ritel)
-        {
-        std::cout << *ritl << std::endl;
-        ++ritl;
-        }
+    myList.push_back(3);
+    myList.push_back(5);
+    myList.push_back(737);
+    //[...]
+    myList.push_back(0);
 
-        std::cout
+    std::cout << std::endl << BLUE << "Test iterator = " << END << std::endl << std::endl;
+
+    std::list<int>::iterator itl = myList.begin();
+    std::list<int>::iterator itel = myList.end();
+
+    ++itl;
+    --itl;
+
+    while (itl != itel)
+    {
+    std::cout << *itl << std::endl;
+    ++itl;
+    }
+    std::cout << std::endl << BLUE << "Test Reverse iterator = " << END << std::endl << std::endl;
+
+    std::list<int>::reverse_iterator ritl = myList.rbegin();
+    std::list<int>::reverse_iterator ritel = myList.rend();
+
+    ++ritl;
+    --ritl;
+
+    while (ritl != ritel)
+    {
+    std::cout << *ritl << std::endl;
+    ++ritl;
+    }
+
+    std::cout
         << std::endl
         << GREEN
         << "================================================"
@@ -135,51 +133,106 @@ int main(void)
         << END
         << std::endl << std::endl;
 
-        std::vector<int> myVector;
+    std::vector<int> myVector;
 
-        myVector.push_back(5);
-        myVector.push_back(17);
-    
-        std::cout << "Top = " << myVector.back() << std::endl;
-        std::cout << "Size before pop = " << myVector.size() << std::endl;
-        myVector.pop_back();
-        std::cout << "Size after pop = " << myVector.size() << std::endl;
-    
-        myVector.push_back(3);
-        myVector.push_back(5);
-        myVector.push_back(737);
-        //[...]
-        myVector.push_back(0);
-    
-        std::cout << std::endl << BLUE << "Test iterator = " << END << std::endl << std::endl;
-    
-        std::vector<int>::iterator itv = myVector.begin();
-        std::vector<int>::iterator itev = myVector.end();
-    
-        ++itv;
-        --itv;
-    
-        while (itv != itev)
-        {
-        std::cout << *itv << std::endl;
-        ++itv;
-        }
+    myVector.push_back(5);
+    myVector.push_back(17);
 
-        std::cout << std::endl << BLUE << "Test Reverse iterator = " << END << std::endl << std::endl;
+    std::cout << "Top = " << myVector.back() << std::endl;
+    std::cout << "Size before pop = " << myVector.size() << std::endl;
+    myVector.pop_back();
+    std::cout << "Size after pop = " << myVector.size() << std::endl;
+
+    myVector.push_back(3);
+    myVector.push_back(5);
+    myVector.push_back(737);
+    //[...]
+    myVector.push_back(0);
+
+    std::cout << std::endl << BLUE << "Test iterator = " << END << std::endl << std::endl;
+
+    std::vector<int>::iterator itv = myVector.begin();
+    std::vector<int>::iterator itev = myVector.end();
+
+    ++itv;
+    --itv;
+
+    while (itv != itev)
+    {
+    std::cout << *itv << std::endl;
+    ++itv;
+    }
+    std::cout << std::endl << BLUE << "Test Reverse iterator = " << END << std::endl << std::endl;
+
+    std::vector<int>::reverse_iterator ritv = myVector.rbegin();
+    std::vector<int>::reverse_iterator ritev = myVector.rend();
     
-        std::vector<int>::reverse_iterator ritv = myVector.rbegin();
-        std::vector<int>::reverse_iterator ritev = myVector.rend();
+    ++ritv;
+    --ritv;
+
+    while (ritv != ritev)
+    {
+    std::cout << *ritv << std::endl;
+    ++ritv;
+    }
+
+    std::cout << std::endl;
+    std::cout
+        << std::endl
+        << GREEN
+        << "================================================"
+        <<std::endl
+        << "==            TEST CONST MutantStack          =="
+        << std::endl
+        << "================================================"
+        << END
+        << std::endl << std::endl;
     
-        ++ritv;
-        --ritv;
-    
-        while (ritv != ritev)
-        {
-        std::cout << *ritv << std::endl;
-        ++ritv;
-        }
-    
-        std::cout << std::endl;
+    MutantStack<int> cmstack;
+
+    cmstack.push(5);
+    cmstack.push(17);
+
+    std::cout << "Top = " << cmstack.top() << std::endl;
+    std::cout << "Size before pop = " << cmstack.size() << std::endl;
+    cmstack.pop();
+    std::cout << "Size after pop = " << cmstack.size() << std::endl;
+
+    cmstack.push(3);
+    cmstack.push(5);
+    cmstack.push(737);
+    //[...]
+    cmstack.push(0);
+
+    const MutantStack<int> test = static_cast<const MutantStack<int> &>(cmstack);
+
+    std::cout << std::endl << BLUE << "Test iterator = " << END << std::endl << std::endl;
+
+    MutantStack<int>::const_iterator cit = test.begin();
+    MutantStack<int>::const_iterator cite = test.end();
+
+    ++cit;
+    --cit;
+
+    while (cit != cite)
+    {
+    std::cout << *cit << std::endl;
+    ++cit;
+    }
+
+    std::cout << std::endl << BLUE << "Test Reverse iterator = " << END << std::endl << std::endl;
+
+    MutantStack<int>::const_reverse_iterator crit = test.rbegin();
+    MutantStack<int>::const_reverse_iterator crite = test.rend();
+
+    ++crit;
+    --crit;
+
+    while (crit != crite)
+    {
+    std::cout << *crit << std::endl;
+    ++crit;
+    }
 
     return 0;
 }
