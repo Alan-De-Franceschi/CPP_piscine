@@ -10,7 +10,7 @@ int main(void)
     for (int i = 0; i < 10; i++)
         myVector.push_back(i);
 
-    int             num = 17;
+    int             num = 0;
 
     if (easyfind(myList, num))
     {
