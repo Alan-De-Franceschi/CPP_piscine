@@ -9,27 +9,26 @@
 # include <iostream>
 # include <map>
 # include <fstream>
-# include <iterator>
+# include <cstdlib>
+# include <algorithm>
 
 class   BitcoinExchange
 {
     public:
     
-        BitcoinExchange(const std::string & file);
+        BitcoinExchange(void);
         BitcoinExchange(const BitcoinExchange & src);
         ~BitcoinExchange(void);
 
         BitcoinExchange &   operator=(const BitcoinExchange & rhs);
 
+        void    btcConverter(const std::string & filename);
+
     private:
 
-        std::map<std::string, double> _exchangeRate;
-        std::map<std::string, double> _inputValues;
-
-        BitcoinExchange(void);
+        std::map<std::string, float>    _exchangeRate;
 
         void    fillRate(void);
-        void    fillValues(const std::string & file);
 };
 
 #endif
