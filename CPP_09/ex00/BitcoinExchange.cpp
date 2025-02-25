@@ -64,9 +64,11 @@ static void checkDelimiter(std::string & line)
 
 static void checkDateFormat(std::string & date)
 {
-    std::string format = "xxxx-xx-xx";
-    int         y = date.find_first_not_of(" ");
+    std::string             format = "xxxx-xx-xx";
+    std::string::size_type  y = date.find_first_not_of(" ");
 
+    if (date.length() < format.length())
+        throw std::invalid_argument("Error: wrong date format => " + date);
     for (std::string::size_type i = 0; i < format.length(); i++)
     {
         if (format[i] == 'x' && !isdigit(date[y]))
@@ -75,12 +77,39 @@ static void checkDateFormat(std::string & date)
             throw std::invalid_argument("Error: wrong date format => " + date);
         y++;
     }
+    for (; y < date.length(); y++)
+    {
+        if (date[y] != ' ')
+            throw std::invalid_argument("Error: wrong date format => " + date);
+    }
     date.erase(std::remove(date.begin(), date.end(), ' '), date.end());
 }
 
-static void checkDateValidity(const std::string & date)
+static void checkDateValidity(std::string & date)
 {
-    
+    long int    year = std::strtol((date.substr(0, date.find('-'))).c_str(), NULL, 10);
+    long int    month = std::strtol((date.substr(date.find('-') + 1, date.rfind('-'))).c_str(), NULL, 10);
+    long int    day = std::strtol((date.substr(date.rfind('-') + 1)).c_str(), NULL, 10);
+
+    if (month < 1 || month > 12)
+        throw std::invalid_argument("Error: invalid date => " + date);
+    if (day < 1 || day > 31)
+        throw std::invalid_argument("Error: invalid date => " + date);
+    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+        throw std::invalid_argument("Error: invalid date => " + date);
+    if (month == 2) 
+    {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) 
+        {
+          if (day > 29)
+            throw std::invalid_argument("Error: invalid date => " + date);
+        } 
+        else 
+        {
+          if (day > 28)
+            throw std::invalid_argument("Error: invalid date => " + date);
+        }
+    }
 }
 
 void    BitcoinExchange::btcConverter(const std::string & filename)
