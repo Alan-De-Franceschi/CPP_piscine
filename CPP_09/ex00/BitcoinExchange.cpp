@@ -51,18 +51,18 @@ void    BitcoinExchange::fillRate(void)
         }
         nb_line++;
     }
-    // for (std::map<std::string, float>::iterator it = this->_exchangeRate.begin(); it != this->_exchangeRate.end(); ++it)
-    //     std::cout << "key = " << it->first << " | " << "value = " << it->second << std::endl;
     file.close();
+    return ;
 }
 
-static void checkDelimiter(std::string & line)
+void BitcoinExchange::checkDelimiter(std::string & line)
 {
     if (line.find(" | ") == std::string::npos)
         throw std::invalid_argument("Error: bad input => " + line);
+    return ;
 }
 
-static void checkDateFormat(std::string & date)
+void BitcoinExchange::checkDateFormat(std::string & date)
 {
     std::string             format = "xxxx-xx-xx";
     std::string::size_type  y = date.find_first_not_of(" ");
@@ -83,9 +83,10 @@ static void checkDateFormat(std::string & date)
             throw std::invalid_argument("Error: wrong date format => " + date);
     }
     date.erase(std::remove(date.begin(), date.end(), ' '), date.end());
+    return ;
 }
 
-static void checkDateValidity(std::string & date)
+void BitcoinExchange::checkDateValidity(std::string & date)
 {
     long int    year = std::strtol((date.substr(0, date.find('-'))).c_str(), NULL, 10);
     long int    month = std::strtol((date.substr(date.find('-') + 1, date.rfind('-'))).c_str(), NULL, 10);
@@ -110,7 +111,42 @@ static void checkDateValidity(std::string & date)
             throw std::invalid_argument("Error: invalid date => " + date);
         }
     }
+    return ;
 }
+
+void BitcoinExchange::checkValueFormat(std::string & value)
+{
+    if (value.find_first_not_of("-0123456789 .") != std::string::npos)
+        throw std::invalid_argument("Error: wrong value format => " + value);
+    std::string::size_type  y = value.find(' ', value.find_first_not_of(' '));
+    if (y == std::string::npos)
+        return ;
+    if (value.find_first_not_of(' ', y) != std::string::npos)
+        throw std::invalid_argument("Error: wrong value format => " + value);
+    return ;
+}
+
+void BitcoinExchange::checkValueValidity(std::string & value)
+{
+    char *ptr = NULL;
+    double   num = std::strtod(value.c_str(), &ptr);
+    std::string sptr(ptr);
+    if (!sptr.empty() && sptr.find_first_not_of(' ') != std::string::npos)
+        throw std::invalid_argument("Error: wrong value format => " + value);
+    if (num < 0)
+        throw std::invalid_argument("Error: not a positive number.");
+    if (num > static_cast<double>(std::numeric_limits<int>::max()) || num > 1000)
+        throw std::invalid_argument("Error: too large a number.");
+    return ;
+}
+
+// void    BitcoinExchange::applyConversion(std::string & date, std::string & value)
+// {
+//     float   inputValue = std::strtof(value.c_str(), NULL);
+
+
+//     return ;
+// }
 
 void    BitcoinExchange::btcConverter(const std::string & filename)
 {
@@ -122,11 +158,16 @@ void    BitcoinExchange::btcConverter(const std::string & filename)
     {
         try
         {
+            if (line.empty())
+                throw std::invalid_argument("Error: empty line");
             checkDelimiter(line);
             std::string date = line.substr(0, line.find(" | "));
             std::string value = line.substr(line.find(" | ") + 3);
             checkDateFormat(date);
             checkDateValidity(date);
+            checkValueFormat(value);
+            checkValueValidity(value);
+           // applyConversion(date, value);
         }
         catch (std::exception & e)
         {
@@ -135,4 +176,5 @@ void    BitcoinExchange::btcConverter(const std::string & filename)
         }
         nbLine++;
     }
+    return ;
 }
