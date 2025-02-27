@@ -35,7 +35,7 @@ class   BitcoinExchange
         void    checkDateValidity(std::string & date);
         void    checkValueFormat(std::string & value);
         void    checkValueValidity(std::string & value);
-       // void    applyConversion(std::string & date, std::string & value);
+        void    applyConversion(std::string & date, std::string & value);
 };
 
 #endif

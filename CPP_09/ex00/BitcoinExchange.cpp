@@ -92,6 +92,10 @@ void BitcoinExchange::checkDateValidity(std::string & date)
     long int    month = std::strtol((date.substr(date.find('-') + 1, date.rfind('-'))).c_str(), NULL, 10);
     long int    day = std::strtol((date.substr(date.rfind('-') + 1)).c_str(), NULL, 10);
 
+    if (year < 2009)
+        throw std::invalid_argument("Error: invalid date => " + date);
+    if (year == 2009 && month == 1 && day < 2)
+        throw std::invalid_argument("Error: invalid date => " + date);
     if (month < 1 || month > 12)
         throw std::invalid_argument("Error: invalid date => " + date);
     if (day < 1 || day > 31)
@@ -140,13 +144,39 @@ void BitcoinExchange::checkValueValidity(std::string & value)
     return ;
 }
 
-// void    BitcoinExchange::applyConversion(std::string & date, std::string & value)
-// {
-//     float   inputValue = std::strtof(value.c_str(), NULL);
+void    BitcoinExchange::applyConversion(std::string & date, std::string & value)
+{
+    float   inputValue = std::strtof(value.c_str(), NULL);
+    std::map<std::string, float>::iterator  it = this->_exchangeRate.find(date);
 
-
-//     return ;
-// }
+    if (it != this->_exchangeRate.end())
+    {
+        std::cout
+            << GREEN
+            << date 
+            << " => " 
+            << value
+            << " = "
+            << inputValue * it->second
+            << END
+            << std::endl;
+    }
+    else
+    {
+        it = this->_exchangeRate.upper_bound(date);
+        it--;
+        std::cout
+            << GREEN
+            << date 
+            << " => " 
+            << value
+            << " = "
+            << inputValue * it->second
+            << END
+            << std::endl;
+    }
+    return ;
+}
 
 void    BitcoinExchange::btcConverter(const std::string & filename)
 {
@@ -167,12 +197,12 @@ void    BitcoinExchange::btcConverter(const std::string & filename)
             checkDateValidity(date);
             checkValueFormat(value);
             checkValueValidity(value);
-           // applyConversion(date, value);
+            applyConversion(date, value);
         }
         catch (std::exception & e)
         {
             if (nbLine != 0)
-                std::cout << e.what() << std::endl;
+                std::cout << RED << e.what() << END << std::endl;
         }
         nbLine++;
     }
