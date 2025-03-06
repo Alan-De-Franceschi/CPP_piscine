@@ -32,7 +32,7 @@ PmergeMe &   PmergeMe::operator=(const PmergeMe & rhs)
 }
 
 /****************************************************************************/
-/*                           Members Functions                              */
+/*                                Parsing                                   */
 /****************************************************************************/
 
 void    PmergeMe::checkList(std::string & intList)
@@ -60,6 +60,11 @@ void    PmergeMe::parsing(std::string & intList)
         num = std::strtol(buf.c_str(), NULL, 10);
         if (num > std::numeric_limits<int>::max())
             throw std::invalid_argument("Error: too large a number => " + buf);
+        for (std::vector<int>::iterator it = this->_vector.begin(); it != this->_vector.end(); it++)
+        {
+            if (*it == num)
+                throw std::invalid_argument("Error: duplicates");
+        }
         if (!buf.empty())
         {
             this->_vector.push_back(num);
@@ -70,14 +75,42 @@ void    PmergeMe::parsing(std::string & intList)
 
 }
 
-void    PmergeMe::mergeList(std::string & intList)
+/****************************************************************************/
+/*                                  Prints                                  */
+/****************************************************************************/
+
+void    PmergeMe::printVector(void)
 {
-    parsing(intList);
     std::cout << "vector = " << std::flush;
     for(std::vector<int>::iterator itv = this->_vector.begin(); itv != this->_vector.end(); itv++)
         std::cout << *itv << " " << std::flush;
-    std::cout << std::endl << "deque = " << std::flush;
+    std::cout << std::endl;
+    return ;
+}
+
+void    PmergeMe::printDeque(void)
+{
+    std::cout << "deque = " << std::flush;
     for(std::deque<int>::iterator itd = this->_deque.begin(); itd != this->_deque.end(); itd++)
         std::cout << *itd << " " << std::flush;
+    std::cout << std::endl;
     return ;
+}
+
+/****************************************************************************/
+/*                               Sort Vector                                */
+/****************************************************************************/
+
+
+
+void    PmergeMe::sortVector(void)
+{
+    std::vector<std::pair<int, int> > pVector;
+
+    if (this->_vector.size() % 2 != 0)
+    {
+        this->_odd = this->_vector.back();
+        this->_vector.pop_back();
+    }
+
 }

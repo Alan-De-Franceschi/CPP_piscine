@@ -6,13 +6,16 @@ int main(int ac, char **av)
     {
         if (ac < 2)
             throw std::invalid_argument("Error: too few arguments");
-        if (ac > 2)
-            throw std::invalid_argument("Error: too much arguments");
 
         PmergeMe    item;
-        std::string intList = av[1];
-
-        item.mergeList(intList);
+        
+        for (int i = 1; av[i]; i++)
+        {
+            std::string intList = av[i];
+            item.parsing(intList);
+        }
+        item.printVector();
+        item.printDeque();
     }
     catch (std::exception & e)
     {
