@@ -98,19 +98,18 @@ void    PmergeMe::printDeque(void)
 }
 
 /****************************************************************************/
-/*                               Sort Vector                                */
+/*                                 Sort                                     */
 /****************************************************************************/
 
-
-
-void    PmergeMe::sortVector(void)
+void    PmergeMe::sort(void)
 {
-    std::vector<std::pair<int, int> > pVector;
-
     if (this->_vector.size() % 2 != 0)
     {
-        this->_odd = this->_vector.back();
+        this->_odd= this->_vector.back();
         this->_vector.pop_back();
     }
 
+    recursive(this->_vector, 1);
+    
+    return ;
 }
