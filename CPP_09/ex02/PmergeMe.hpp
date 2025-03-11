@@ -12,6 +12,7 @@
 # include <limits>
 # include <cstdlib>
 # include <algorithm>
+# include <utility>
 
 class PmergeMe
 {
@@ -24,12 +25,14 @@ class PmergeMe
         PmergeMe &  operator=(const PmergeMe & rhs);
 
         void    parsing(std::string & intList);
-        void    sort(void);
+        void    sortContainer(void);
 
         void    printVector(void);
         void    printDeque(void);
 
     private:
+
+        typedef std::pair<int, int> contPair;
 
         std::vector<int>    _vector;
         std::deque<int>     _deque;
@@ -37,28 +40,130 @@ class PmergeMe
 
         void    checkList(std::string & intList);
 
-        template<typename T>
-        void    recursive(T & container, size_t groupSize);
+        template<typename P, typename C>
+        void    makePairs (P & pairs, C & container);
+        template<typename P, typename C>
+        void    getLarge(P & pairs, C & container);
+        template<typename C>
+        C       recursive(C & container);
+        template<typename C>
+        C       merge(C & left, C & right);
+        template<typename C>
+        C       getJacobsthal(size_t size);
 };
 
-template<typename T>
-void    PmergeMe::recursive(T & container, size_t groupSize)
-{
-    size_t pos = (groupSize - 1)*(groupSize != 1);
 
-    for (size_t i = groupSize - 1; i + groupSize < container.size(); i += groupSize * 2)
+template<typename P, typename C>
+void    PmergeMe::makePairs (P & pairs, C & container)
+{
+    if (container.size() % 2 != 0)
     {
-        if (container[i] > container[i + groupSize])
+        this->_odd = container.back();
+        container.pop_back();
+    }
+    typename C::iterator it = container.begin();
+    for (size_t i = 0; i < container.size() - 1; i += 2)
+    {
+        contPair temp;
+        temp.first = *it;
+        temp.second = *(it + 1);
+        pairs.push_back(temp);
+        it += 2;
+    }
+    for (typename P::iterator pit = pairs.begin(); pit != pairs.end(); pit++)
+    {
+        if (pit->first > pit->second)
         {
-            typename T::iterator first = container.begin() + i - pos;
-            typename T::iterator second = container.begin() + i - pos + groupSize;
-            std::swap_ranges(first, second, second);
+            int temp = pit->first;
+            pit->first = pit->second;
+            pit->second = temp;
         }
     }
-    printVector();
-    if (groupSize <= container.size() / 2)
-        recursive(container, groupSize * 2);
-    return ;
+}
+
+template<typename P, typename C>
+void    PmergeMe::getLarge(P & pairs, C & container)
+{
+    for (typename P::iterator pit = pairs.begin(); pit != pairs.end(); pit++)
+        container.push_back(pit->second);
+}
+
+template<typename C>
+C   PmergeMe::merge(C & left, C & right)
+{
+    C merged;
+    
+    for (; !left.empty() && !right.empty() ;)
+    {
+        if (left.front() < right.front())
+        {
+            merged.push_back(left.front());
+            left.erase(left.begin());
+        }
+        else
+        {
+            merged.push_back(right.front());
+            right.erase(right.begin());
+        }
+    }
+    if (!left.empty())
+    {
+        for (; !left.empty();)
+        {
+            merged.push_back(left.front());
+            left.erase(left.begin());
+        }
+    }
+    else if (!right.empty())
+    {
+        for (; !right.empty();)
+        {
+            merged.push_back(right.front());
+            right.erase(right.begin());
+        }
+    }
+    return (merged);
+}
+
+template<typename C>
+C   PmergeMe::recursive(C & container)
+{
+    C       left;
+    C       right;
+    C       sortLeft;
+    C       sortRight;
+    size_t  i = 0;
+
+    if (container.size() == 1)
+        return (container) ;
+
+    for (; i < container.size() / 2; i++)
+        left.push_back(container[i]);
+    for (; i < container.size(); i++)
+        right.push_back(container[i]);
+    sortLeft = recursive(left);
+    sortRight = recursive(right);
+    std::sort(left.begin(), left.end());
+    std::sort(right.begin(), right.end());
+
+    return (merge(sortLeft, sortRight));
+}
+
+template<typename C>
+C   PmergeMe::getJacobsthal(size_t size)
+{
+    C jacob;
+
+    jacob.push_back(0);
+    jacob.push_back(1);
+    jacob.push_back(3);
+    for (; jacob.size() != size ;)
+    {
+        int prev = *(jacob.end() - 1);
+        int prevPrev = *(jacob.end() - 2);
+        jacob.push_back(prev + 2 * prevPrev);
+    }
+    return (jacob);
 }
 
 #endif

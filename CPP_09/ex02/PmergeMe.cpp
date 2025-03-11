@@ -4,7 +4,7 @@
 /*                      Constructors / Destructors                          */
 /****************************************************************************/
 
-PmergeMe::PmergeMe(void)
+PmergeMe::PmergeMe(void): _odd(-1)
 {
     return ;
 }
@@ -76,40 +76,37 @@ void    PmergeMe::parsing(std::string & intList)
 }
 
 /****************************************************************************/
-/*                                  Prints                                  */
-/****************************************************************************/
-
-void    PmergeMe::printVector(void)
-{
-    std::cout << "vector = " << std::flush;
-    for(std::vector<int>::iterator itv = this->_vector.begin(); itv != this->_vector.end(); itv++)
-        std::cout << *itv << " " << std::flush;
-    std::cout << std::endl;
-    return ;
-}
-
-void    PmergeMe::printDeque(void)
-{
-    std::cout << "deque = " << std::flush;
-    for(std::deque<int>::iterator itd = this->_deque.begin(); itd != this->_deque.end(); itd++)
-        std::cout << *itd << " " << std::flush;
-    std::cout << std::endl;
-    return ;
-}
-
-/****************************************************************************/
 /*                                 Sort                                     */
 /****************************************************************************/
 
-void    PmergeMe::sort(void)
+void    PmergeMe::sortContainer(void)
 {
-    if (this->_vector.size() % 2 != 0)
-    {
-        this->_odd= this->_vector.back();
-        this->_vector.pop_back();
-    }
+    std::vector<contPair>   pVector;
+    std::vector<int>        vlarge;
+    std::vector<int>        jacob;
 
-    recursive(this->_vector, 1);
+    makePairs(pVector, this->_vector);
+    getLarge(pVector, vlarge);
+    if (this->_odd != -1)
+        vlarge.push_back(this->_odd);
+    vlarge = recursive(vlarge);
+    jacob = getJacobsthal<std::vector<int> >(pVector.size());
     
+
+
+
+    for (std::vector<int>::iterator it = jacob.begin(); it != jacob.end(); it++)
+       std::cout << *it << "  " << std::flush;
+
+    // std::deque<contPair>   pDeque;
+    // std::deque<int>        dlarge;
+    
+    // makePairs(pDeque, this->_deque);
+    // getLarge(pDeque, dlarge);
+    // if (this->_odd != -1)
+    //     dlarge.push_back(this->_odd);
+    // dlarge = recursive(dlarge);
+    // for (std::deque<int>::iterator it = dlarge.begin(); it != dlarge.end(); it++)
+    //    std::cout << *it << "  " << std::flush;
     return ;
 }

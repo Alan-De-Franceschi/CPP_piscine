@@ -14,7 +14,7 @@ int main(int ac, char **av)
             std::string intList = av[i];
             item.parsing(intList);
         }
-        item.sort();
+        item.sortContainer();
     }
     catch (std::exception & e)
     {
