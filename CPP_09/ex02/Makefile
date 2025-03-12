@@ -1,6 +1,6 @@
 NAME			=	PmergeMe
 
-CFLAGS			=	-Wall -Wextra -Werror -I INCLUDES -std=c++98 -g3
+CFLAGS			=	-Wall -Wextra -Werror -I INCLUDES -std=c++98
 
 CC				=	c++
 

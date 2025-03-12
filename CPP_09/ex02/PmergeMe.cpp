@@ -82,15 +82,16 @@ void    PmergeMe::parsing(std::string & intList)
 void    PmergeMe::sortContainer(void)
 {
     std::vector<contPair>   pVector;
-    std::vector<int>        vlarge;
+    std::vector<int>        vSorted;
     std::vector<int>        jacob;
 
     makePairs(pVector, this->_vector);
-    getLarge(pVector, vlarge);
+    getLarge(pVector, vSorted);
     if (this->_odd != -1)
-        vlarge.push_back(this->_odd);
-    vlarge = recursive(vlarge);
+        vSorted.push_back(this->_odd);
+    vSorted = mergeSort(vSorted);
     jacob = getJacobsthal<std::vector<int> >(pVector.size());
+    insertion(pVector, vSorted, jacob);
     
 
 

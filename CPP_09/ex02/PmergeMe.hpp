@@ -27,9 +27,6 @@ class PmergeMe
         void    parsing(std::string & intList);
         void    sortContainer(void);
 
-        void    printVector(void);
-        void    printDeque(void);
-
     private:
 
         typedef std::pair<int, int> contPair;
@@ -45,11 +42,13 @@ class PmergeMe
         template<typename P, typename C>
         void    getLarge(P & pairs, C & container);
         template<typename C>
-        C       recursive(C & container);
+        C       mergeSort(C & container);
         template<typename C>
         C       merge(C & left, C & right);
         template<typename C>
         C       getJacobsthal(size_t size);
+        template<typename P, typename C>
+        void    insertion(P & pairs, C & container, C & jacob);
 };
 
 
@@ -126,7 +125,7 @@ C   PmergeMe::merge(C & left, C & right)
 }
 
 template<typename C>
-C   PmergeMe::recursive(C & container)
+C   PmergeMe::mergeSort(C & container)
 {
     C       left;
     C       right;
@@ -141,8 +140,8 @@ C   PmergeMe::recursive(C & container)
         left.push_back(container[i]);
     for (; i < container.size(); i++)
         right.push_back(container[i]);
-    sortLeft = recursive(left);
-    sortRight = recursive(right);
+    sortLeft = mergeSort(left);
+    sortRight = mergeSort(right);
     std::sort(left.begin(), left.end());
     std::sort(right.begin(), right.end());
 
@@ -164,6 +163,13 @@ C   PmergeMe::getJacobsthal(size_t size)
         jacob.push_back(prev + 2 * prevPrev);
     }
     return (jacob);
+}
+
+template<typename P, typename C>
+void    PmergeMe::insertion(P & pairs, C & container, C & jacob)
+{
+    
+    return ;
 }
 
 #endif
