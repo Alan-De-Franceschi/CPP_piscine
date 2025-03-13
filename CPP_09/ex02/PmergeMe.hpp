@@ -168,16 +168,13 @@ C   PmergeMe::getJacobsthal(size_t size)
 template<typename P, typename C>
 void    PmergeMe::insertion(P & pairs, C & container, C & jacob)
 {
-    
+    C   to_sorted;
+
+    for (size_t i = 0; i < pairs.size(); i++)
+    {
+
+    }
     return ;
 }
 
 #endif
-
-// [12 5] [48 4] [15 47] [12 59]
-
-// {[5 12 4 48 15 47 12 59]}
-
-// 12 48   47 59
-
-// 12 47 48 59
