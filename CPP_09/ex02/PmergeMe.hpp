@@ -37,6 +37,8 @@ class PmergeMe
 
         void    checkList(std::string & intList);
 
+        template<typename C>
+        void    printContainer(C & container, int status);
         template<typename P, typename C>
         void    makePairs (P & pairs, C & container);
         template<typename P, typename C>
@@ -47,10 +49,37 @@ class PmergeMe
         C       merge(C & left, C & right);
         template<typename C>
         C       getJacobsthal(size_t size);
-        template<typename P, typename C>
-        void    insertion(P & pairs, C & container, C & jacob);
+       // template<typename P, typename C>
+       // void    insertion(P & pairs, C & container, C & jacob);
 };
 
+template<typename C>
+void    PmergeMe::printContainer(C & container, int status)
+{
+    if (status == 0)
+        std::cout << "Before:   " << std::flush;
+    else
+        std::cout << "After:    " << std::flush;
+    typename C::iterator it = container.begin();
+    for (size_t i = 0; i < container.size(); i++)
+    {
+        if (container.size() > 5 && i == 4)
+        {
+            std::cout
+                << "[...]"
+                << std::flush;
+            break;
+        }
+        std::cout
+            << *it
+            << std::flush;
+        if (i != container.size() - 1)
+            std::cout << ' ' << std::flush;
+        ++it;
+    }
+    std::cout << std::endl;
+    return ;
+}
 
 template<typename P, typename C>
 void    PmergeMe::makePairs (P & pairs, C & container)
@@ -165,16 +194,16 @@ C   PmergeMe::getJacobsthal(size_t size)
     return (jacob);
 }
 
-template<typename P, typename C>
-void    PmergeMe::insertion(P & pairs, C & container, C & jacob)
-{
-    C   to_sorted;
+// template<typename P, typename C>
+// void    PmergeMe::insertion(P & pairs, C & container, C & jacob)
+// {
+//     C   to_sorted;
 
-    for (size_t i = 0; i < pairs.size(); i++)
-    {
-
-    }
-    return ;
-}
+//     for (size_t i = 0; i < pairs.size(); i++)
+//     {
+        
+//     }
+//     return ;
+// }
 
 #endif

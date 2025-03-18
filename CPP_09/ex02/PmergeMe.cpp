@@ -85,19 +85,21 @@ void    PmergeMe::sortContainer(void)
     std::vector<int>        vSorted;
     std::vector<int>        jacob;
 
+    printContainer(this->_vector, 0);
+
     makePairs(pVector, this->_vector);
     getLarge(pVector, vSorted);
     if (this->_odd != -1)
         vSorted.push_back(this->_odd);
     vSorted = mergeSort(vSorted);
     jacob = getJacobsthal<std::vector<int> >(pVector.size());
-    insertion(pVector, vSorted, jacob);
+   // insertion(pVector, vSorted, jacob);
     
 
 
 
-    for (std::vector<int>::iterator it = jacob.begin(); it != jacob.end(); it++)
-       std::cout << *it << "  " << std::flush;
+    // for (std::vector<int>::iterator it = jacob.begin(); it != jacob.end(); it++)
+    //    std::cout << *it << "  " << std::flush;
 
     // std::deque<contPair>   pDeque;
     // std::deque<int>        dlarge;
