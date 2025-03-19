@@ -72,7 +72,6 @@ void    PmergeMe::parsing(std::string & intList)
         }
     }
     return ;
-
 }
 
 /****************************************************************************/
@@ -81,6 +80,12 @@ void    PmergeMe::parsing(std::string & intList)
 
 void    PmergeMe::sortContainer(void)
 {
+
+    if (this->_vector.size() == 1 || isSorted(this->_vector))
+        throw std::invalid_argument("Sequence is already sort");
+    
+    std::clock_t    vStart = std::clock();
+
     std::vector<contPair>   pVector;
     std::vector<int>        vSorted;
     std::vector<int>        jacob;
@@ -88,15 +93,16 @@ void    PmergeMe::sortContainer(void)
     printContainer(this->_vector, 0);
 
     makePairs(pVector, this->_vector);
+    pVector = mergeSort(pVector);
+    // for (std::vector<std::pair<int, int> >::iterator it = pVector.begin(); it != pVector.end(); it++)
+    // {
+    //     std::cout << "first = " << (*it).first << " second = " << (*it).second << std::endl;
+    // }
     getLarge(pVector, vSorted);
-    if (this->_odd != -1)
-        vSorted.push_back(this->_odd);
-    vSorted = mergeSort(vSorted);
     jacob = getJacobsthal<std::vector<int> >(pVector.size());
    // insertion(pVector, vSorted, jacob);
     
-
-
+   std::clock_t    vStop = std::clock();
 
     // for (std::vector<int>::iterator it = jacob.begin(); it != jacob.end(); it++)
     //    std::cout << *it << "  " << std::flush;
@@ -111,5 +117,16 @@ void    PmergeMe::sortContainer(void)
     // dlarge = recursive(dlarge);
     // for (std::deque<int>::iterator it = dlarge.begin(); it != dlarge.end(); it++)
     //    std::cout << *it << "  " << std::flush;
+
+    std::cout
+        << std::endl
+        << "Time to process a range of  "
+        << this->_vector.size()
+        << " elements with std::vector :   "
+        << std::fixed << std::setprecision(6)
+        << double(vStop - vStart) / CLOCKS_PER_SEC
+        << " us"
+        << std::endl;
+
     return ;
 }
