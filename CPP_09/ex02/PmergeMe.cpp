@@ -80,7 +80,6 @@ void    PmergeMe::parsing(std::string & intList)
 
 void    PmergeMe::sortContainer(void)
 {
-
     if (this->_vector.size() == 1 || isSorted(this->_vector))
         throw std::invalid_argument("Sequence is already sort");
     
@@ -88,43 +87,53 @@ void    PmergeMe::sortContainer(void)
 
     std::vector<contPair>   pVector;
     std::vector<int>        vSorted;
-    std::vector<int>        jacob;
+    std::vector<int>        vJacob;
 
     printContainer(this->_vector, 0);
 
     makePairs(pVector, this->_vector);
     pVector = mergeSort(pVector);
-    // for (std::vector<std::pair<int, int> >::iterator it = pVector.begin(); it != pVector.end(); it++)
-    // {
-    //     std::cout << "first = " << (*it).first << " second = " << (*it).second << std::endl;
-    // }
     getLarge(pVector, vSorted);
-    jacob = getJacobsthal<std::vector<int> >(pVector.size());
-   // insertion(pVector, vSorted, jacob);
+    vJacob = getJacobsthal<std::vector<int> >(pVector.size());
+    insertion(pVector, vSorted, vJacob);
     
-   std::clock_t    vStop = std::clock();
+    std::clock_t    vStop = std::clock();
 
-    // for (std::vector<int>::iterator it = jacob.begin(); it != jacob.end(); it++)
-    //    std::cout << *it << "  " << std::flush;
+    std::clock_t            dStart = std::clock();
+    std::deque<contPair>    pDeque;
+    std::deque<int>         dSorted;
+    std::deque<int>         dJacob;
 
-    // std::deque<contPair>   pDeque;
-    // std::deque<int>        dlarge;
+    makePairs(pDeque, this->_deque);
+    pDeque = mergeSort(pDeque);
+    getLarge(pDeque, dSorted);
+    dJacob = getJacobsthal<std::deque<int> >(pDeque.size());
+    insertion(pDeque, dSorted, dJacob);
     
-    // makePairs(pDeque, this->_deque);
-    // getLarge(pDeque, dlarge);
-    // if (this->_odd != -1)
-    //     dlarge.push_back(this->_odd);
-    // dlarge = recursive(dlarge);
-    // for (std::deque<int>::iterator it = dlarge.begin(); it != dlarge.end(); it++)
-    //    std::cout << *it << "  " << std::flush;
+    std::clock_t    dStop = std::clock();
+
+    printContainer(vSorted, 1);
+
+    std::cout
+       << "Time to process a range of  "
+       << vSorted.size()
+       << BLUE
+       << " elements with std::vector :   "
+       << END
+       << std::fixed << std::setprecision(6)
+       << double(vStop - vStart) / CLOCKS_PER_SEC
+       << " us"
+       << std::flush;
 
     std::cout
         << std::endl
         << "Time to process a range of  "
-        << this->_vector.size()
-        << " elements with std::vector :   "
+        << dSorted.size()
+        << YELLOW
+        << " elements with std::deque :   "
+        << END
         << std::fixed << std::setprecision(6)
-        << double(vStop - vStart) / CLOCKS_PER_SEC
+        << double(dStop - dStart) / CLOCKS_PER_SEC
         << " us"
         << std::endl;
 

@@ -4,6 +4,8 @@
 # define GREEN 	"\033[0;32m"
 # define RED	"\033[0;31m"
 # define END	"\033[0m"
+# define BLUE	"\033[0;36m"
+# define YELLOW	"\033[0;33m"
 
 # include <iostream>
 # include <vector>
@@ -53,8 +55,10 @@ class PmergeMe
         P       merge(P & left, P & right);
         template<typename C>
         C       getJacobsthal(size_t size);
-       // template<typename P, typename C>
-       // void    insertion(P & pairs, C & container, C & jacob);
+        template<typename P, typename C>
+        void    insertion(P & pairs, C & container, C & jacob);
+        template<typename C>
+        void    binarySearch(int n, C & container, int size);
 };
 
 template<typename C>
@@ -80,13 +84,6 @@ void    PmergeMe::printContainer(C & container, int status)
     typename C::iterator it = container.begin();
     for (size_t i = 0; i < container.size(); i++)
     {
-        if (container.size() > 5 && i == 4)
-        {
-            std::cout
-                << "[...]"
-                << std::flush;
-            break;
-        }
         std::cout
             << *it
             << std::flush;
@@ -200,9 +197,9 @@ C   PmergeMe::getJacobsthal(size_t size)
 {
     C jacob;
 
-    jacob.push_back(0);
-    jacob.push_back(1);
-    jacob.push_back(1);
+    jacob.push_back(3);
+    jacob.push_back(5);
+    jacob.push_back(11);
     for (; jacob.size() < size ;)
     {
         int prev = *(jacob.end() - 1);
@@ -212,16 +209,53 @@ C   PmergeMe::getJacobsthal(size_t size)
     return (jacob);
 }
 
-// template<typename P, typename C>
-// void    PmergeMe::insertion(P & pairs, C & container, C & jacob)
-// {
-//     C   to_sorted;
+template<typename C>
+void    PmergeMe::binarySearch(int n, C & container, int size)
+{
+    int start = 0;
+    int mid;
+    int end = size - 1;
 
-//     for (size_t i = 0; i < pairs.size(); i++)
-//     {
+    for (; start <= end; )
+    {
+        mid = ((end - start) / 2) + start;
+        if (n < container[mid])
+            end = mid - 1;
+        else
+            start = mid + 1;
+    }
+    container.insert(container.begin() + start, n);
+    return ;
+}
+
+template<typename P, typename C>
+void    PmergeMe::insertion(P & pairs, C & container, C & jacob)
+{
+    size_t  jacobIndex;
+    size_t  prevIndex = 0;
+    size_t  i = 0;
+    
+    container.insert(container.begin(), pairs[0].first);
+    while (true)
+    {
+        if (container.size() == pairs.size() * 2)
+            break ;
+        if (static_cast<size_t>(jacob[i]) > pairs.size())
+            jacobIndex = pairs.size() - 1;
+        else
+            jacobIndex = jacob[i] - 1;
         
-//     }
-//     return ;
-// }
+        for (; jacobIndex > prevIndex; jacobIndex--)
+        {
+            binarySearch(pairs[jacobIndex].first, container, 
+                std::find(container.begin(), container.end(), pairs[jacobIndex].second) - container.begin());
+        }
+        prevIndex = jacob[i] - 1;
+        i++;
+    }
+    if (this->_odd != -1)
+        binarySearch(this->_odd, container, container.size() - 1);
+    return ;
+}
 
 #endif
